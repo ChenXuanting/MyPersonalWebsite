@@ -1,4 +1,4 @@
-import { Heading, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { Heading, HStack, Image, Text, VStack, Box } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
@@ -39,11 +39,11 @@ const Card = ({ title, description, imageSrc }) => {
         paddingBottom={3}
         paddingLeft={3}
       >
-        <Heading as="h3" size="sm" color="black" noOfLines={1} isTruncated>
-          {title}
-        </Heading>
-      
-        <Text color="gray.500" noOfLines={2} isTruncated fontSize="xs">
+          <Heading as="h3" size="sm" color="black" noOfLines={1}>
+              {title}
+          </Heading>
+
+        <Text color="gray.500" noOfLines={2} fontSize="xs">
           {description}
         </Text>
         

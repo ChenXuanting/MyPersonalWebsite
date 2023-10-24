@@ -1,0 +1,31 @@
+.typing, .typed {
+    font-weight: bold; /* Make the text bold */
+    display: inline-block;
+    transition: font-size 0.5s ease-out;
+}
+
+.typing {
+    font-size: 100px; /* Size while typing */
+    transform-origin: left;
+}
+
+.typed {
+    font-size: 60px; /* Size after typing is complete */
+}
+
+.cursor {
+    background-color: black; /* Make the cursor a black box */
+    display: inline-block;
+    width: 1ch; /* Width of a single character */
+    height: 1em; /* Height based on the current font size */
+    vertical-align: middle; /* Align with the bottom of the text */
+    margin-left: 4px; /* Optional: add a little space between the text and cursor */
+    animation: blink 0.3s infinite; /* Animation for blinking effect */
+    transform: translateY(-5px);
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
