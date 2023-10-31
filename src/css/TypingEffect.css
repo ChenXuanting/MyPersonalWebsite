@@ -5,12 +5,12 @@
 }
 
 .typing {
-    font-size: 100px; /* Size while typing */
+    font-size: 6rem; /* Size while typing */
     transform-origin: left;
 }
 
 .typed {
-    font-size: 60px; /* Size after typing is complete */
+    font-size: 5rem; /* Size after typing is complete */
 }
 
 .cursor {
