@@ -9,6 +9,7 @@ import Alert from "./components/Alert";
 
 function App() {
   return (
+    <>
     <ChakraProvider>
       <AlertProvider>
         <main>
@@ -21,6 +22,7 @@ function App() {
         </main>
       </AlertProvider>
     </ChakraProvider>
+    </>
   );
 }
 
