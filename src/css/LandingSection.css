@@ -10,3 +10,25 @@
     object-position: center;
     z-index: 0;
   }
+
+.text-overlay {
+    position: absolute;
+    top: 60%;
+    left: 62%;
+    transform: translate(-50%, -50%);
+    color: black;
+    text-align: center;
+    z-index: 0;
+    font-family: 'Montserrat', sans-serif;
+ }
+
+.text-overlay h1 {
+    margin: 0;
+    font-size: 4.5em; /* Main text size */
+    font-weight: bold;
+ }
+
+.text-overlay p {
+    font-size: 2em; /* Additional text size */
+    font-weight: bold;
+}

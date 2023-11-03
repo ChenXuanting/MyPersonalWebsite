@@ -65,9 +65,13 @@ const LandingSection = () => {
       alt="Portrait"
       id="portraitDiv"
       style={{
-        clipPath: `circle(${circleSize} at 50% 100%)` // <-- Use clipPath here
+        clipPath: `circle(${circleSize} at 50% 100%)`, // Use clipPath for the reveal effect
       }}
     />
+    {(circleSize >= '50%' || circleSize === '100%' ) && <div className="text-overlay">
+        <h1>Xuanting Chen</h1>
+        <p>Data Scientist | Full-stack developer</p>
+    </div>}
     <VStack
       spacing={5}
       height="100%"
