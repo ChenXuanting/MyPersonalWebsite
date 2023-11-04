@@ -78,7 +78,7 @@ const LandingSection = () => {
       justifyContent="center"
       alignItems="center"
     >
-      {texts.map((text, index) => (
+      {texts.map((text, index) => (circleSize !== '100%' &&
         <TypingEffect key={index} startDelay={120 * texts.slice(0, index).reduce((total, t) => total + t.length, 0)}>
           {text}
         </TypingEffect>

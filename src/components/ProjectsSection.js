@@ -1,62 +1,53 @@
 import React from "react";
 import FullScreenSection from "./FullScreenSection";
-import { Box, Heading } from "@chakra-ui/react";
-import Card from "./Card";
-
-const projects = [
-  {
-    title: "React Space",
-    description:
-      "Handy tool belt to create amazing AR components in a React app, with redux integration via middleware️",
-    getImageSrc: () => require("../images/photo1.jpg"),
-  },
-  {
-    title: "React Infinite Scroll",
-    description:
-      "A scrollable bottom sheet with virtualisation support, native animations at 60 FPS and fully implemented in JS land 🔥️",
-    getImageSrc: () => require("../images/photo2.jpg"),
-  },
-  {
-    title: "Photo Gallery",
-    description:
-      "A One-stop shop for photographers to share and monetize their photos, allowing them to have a second source of income",
-    getImageSrc: () => require("../images/photo3.jpg"),
-  },
-  {
-    title: "Event planner",
-    description:
-      "A mobile application for leisure seekers to discover unique events and activities in their city with a few taps",
-    getImageSrc: () => require("../images/photo4.jpg"),
-  },
-];
+import { Box, Divider, Card, CardHeader, CardBody, CardFooter, Text, Stack, Heading, Button, Image } from "@chakra-ui/react";
+import TwitterDetection from "../images/TwitterDetection.png"
 
 const ProjectsSection = () => {
   return (
     <FullScreenSection
       backgroundColor= "white"
       isDarkBackground = {false}
-      p={8}
       alignItems="flex-start"
-      spacing={8}
     >
-      <Heading as="h1" id="projects-section">
-        Featured Projects
-      </Heading>
+      <Divider my={8} id="projects-section"/>
       <Box
-        display="grid"
-        gridTemplateColumns="repeat(2,minmax(0,1fr))"
-        gridGap={8}
-        // justifyContent="center"
-        // alignItems="center"
+        display="flex"
+        flexDirection= "row"
+        justifyContent="center"
+        alignItems="flex-start"
+        overflowX="auto"
+        width="100%"
+        style = {{marginTop: 0}}
       >
-        {projects.map((project) => (
-          <Card
-            key={project.title}
-            title={project.title}
-            description={project.description}
-            imageSrc={project.getImageSrc()}
+        <Card
+          direction={{ base: 'column', sm: 'row' }}
+          overflow='hidden'
+          variant='outline'
+        >
+          <Image
+            objectFit='cover'
+            maxW={{ base: '100%', sm: '200px' }}
+            src= {TwitterDetection}
+            alt='Twitter Offensive Detection'
           />
-        ))}
+
+          <Stack>
+            <CardBody>
+              <Heading size='md'>Twitter Offensive Language Detection</Heading>
+
+              <Text py='2'>
+              Twitter Offensive Language Detection.Twitter Offensive Language Detection.Twitter Offensive Language Detection.Twitter Offensive Language Detection.Twitter Offensive Language Detection.
+              </Text>
+            </CardBody>
+
+            <CardFooter>
+              <Button variant='solid' colorScheme='blue'>
+                Show detail
+              </Button>
+            </CardFooter>
+          </Stack>
+        </Card>
       </Box>
     </FullScreenSection>
   );

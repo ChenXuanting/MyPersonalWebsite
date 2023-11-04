@@ -2,6 +2,7 @@
     font-weight: bold; /* Make the text bold */
     display: inline-block;
     transition: font-size 0.5s ease-out;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .typing {

@@ -1,49 +1,31 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, HStack, Tooltip } from "@chakra-ui/react";
 
 const socials = [
   {
     icon: faEnvelope,
-    url: "mailto: example@gmail.com",
+    name: "Email",
+    url: "mailto: bldcxt@gmail.com",
   },
   {
     icon: faGithub,
-    url: "https://github.com/",
+    name: "Github",
+    url: "https://github.com/ChenXuanting",
   },
   {
     icon: faLinkedin,
-    url: "https://www.linkedin.com/",
+    name: "Linkedin",
+    url: "https://www.linkedin.com/in/theochen1108/",
   },
 ];
 
 const Header = () => {
-  const [hideHeader, setHideHeader] = useState(false);
-  const prevScrollY = useRef(0);
-
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY > prevScrollY.current) {
-      setHideHeader(true);
-    } else {
-      setHideHeader(false);
-    }
-
-    prevScrollY.current = currentScrollY;
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
@@ -60,16 +42,16 @@ const Header = () => {
     <Box
       position="fixed"
       top={0}
-      left={0}
-      right={0}
-      transform={hideHeader ? "translateY(-200px)" : "translateY(0)"}
-      transitionProperty="transform"
-      transitionDuration=".3s"
-      transitionTimingFunction="ease-in-out"
-      backgroundColor="#18181b"
+      left="50%"
+      transform="translateX(-50%)"
+      backgroundColor="white"
+      borderBottom="1px" // Sets the border width
+      borderColor="gray.100" // Sets the border color
+      width = "100%"
+      maxWidth="1504px"
       zIndex={1000}
     >
-      <Box color="white" maxWidth="1280px" margin="0 auto">
+      <Box color="black" maxWidth="95%" margin="0 auto">
         <HStack
           px={16}
           py={4}
@@ -80,17 +62,19 @@ const Header = () => {
             {/* Add social media links based on the `socials` data */}
             <HStack>
               {socials.map((social, index) => (
-                <a key={index} href={social.url}>
-                  <FontAwesomeIcon icon={social.icon} size="2x" />
-                </a>
+                <Tooltip label={social.name} aria-label='A tooltip'>
+                  <a key={index} href={social.url}>
+                    <FontAwesomeIcon icon={social.icon} size="2x" />
+                  </a>
+                </Tooltip>
               ))}
             </HStack>
           </nav>
           <nav>
             <HStack spacing={8}>
               {/* Add links to Projects and Contact me section */}
-              <a href="/#projects" onClick={handleClick('projects')}>Projects</a>
-              <a href="/#contact-me" onClick={handleClick('contactme')}>Contact Me</a>
+                <a href="/#projects" onClick={handleClick('projects')} style={{ fontWeight: 'bold', fontFamily: "'Montserrat', sans-serif" }}>Projects</a>
+                <a href="/#contact-me" onClick={handleClick('contactme')} style={{ fontWeight: 'bold', fontFamily: "'Montserrat', sans-serif" }}>Contact Me</a>
             </HStack>
           </nav>
         </HStack>

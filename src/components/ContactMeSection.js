@@ -51,15 +51,16 @@ const ContactMeSection = () => {
   return (
     <FullScreenSection
       isDarkBackground
-      backgroundColor="#512DA8"
+      backgroundColor="white"
+      subBackgroundColor="#512DA8"
       py={16}
       spacing={8}
     >
-      <VStack w="1024px" p={32} alignItems="flex-start">
+      <VStack w="100%" mw="1024px" alignItems="center">
         <Heading as="h1" id="contactme-section">
           Contact me
         </Heading>
-        <Box p={6} rounded="md" w="100%">
+        <Box p={6} rounded="md" w="100%" style={{maxWidth: "800px"}}>
           <form onSubmit={formik.handleSubmit}>
             <VStack spacing={4}>
               <FormControl isInvalid={formik.touched.firstName && !!formik.errors.firstName}>
