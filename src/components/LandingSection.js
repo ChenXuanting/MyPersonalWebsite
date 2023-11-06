@@ -6,8 +6,10 @@ import TypingEffect from "./TypingEffect";
 import '../css/LandingSection.css';
 
 const LandingSection = () => {
-  const [circleSize, setCircleSize] = useState('0%');
+  const [circleSize, setCircleSize] = useState(0);
   const [typingFinished, setTypingFinished] = useState(false);
+
+  const isMobile = window.innerWidth <= 768;
 
   const texts = [
     "Hello, I am Theo! ",
@@ -31,13 +33,20 @@ const LandingSection = () => {
         return;
       }
 
+      if (isMobile) {
+        setCircleSize(100);
+        document.body.style.overflowY = "auto";
+        window.removeEventListener('touchmove', handleScroll);
+        return
+      }
+
       // Adjust the circle size based on the scroll
       setCircleSize(prevSize => {
         const size = parseFloat(prevSize) + e.deltaY * 0.05;
-        return `${Math.min(Math.max(size, 0), 100)}%`;  // Clamp between 0% and 100%
+        return Math.min(Math.max(size, 0), 100);  // Clamp between 0% and 100%
       });
 
-      if (circleSize === '100%') {
+      if (circleSize === 100) {
         document.body.style.overflowY = "auto";
         window.removeEventListener('wheel', handleScroll);
       }
@@ -45,9 +54,11 @@ const LandingSection = () => {
 
     document.body.style.overflowY = "hidden";
     window.addEventListener('wheel', handleScroll, { passive: false });
+    window.addEventListener('touchmove', handleScroll, { passive: false });
 
     return () => {
       window.removeEventListener('wheel', handleScroll);
+      window.removeEventListener('touchmove', handleScroll);
     };
   }, [circleSize, typingFinished]);
 
@@ -65,10 +76,11 @@ const LandingSection = () => {
       alt="Portrait"
       id="portraitDiv"
       style={{
-        clipPath: `circle(${circleSize} at 50% 100%)`, // Use clipPath for the reveal effect
+        clipPath: `circle(${circleSize}% at 50% 100%)`, // Use clipPath for the reveal effect
+        animation: typingFinished && isMobile ? 'revealCircle 2s forwards' : undefined, // Apply the animation if typing is finished and on mobile
       }}
     />
-    {(circleSize >= '50%' || circleSize === '100%' ) && <div className="text-overlay">
+    {circleSize >= 50 && <div className="text-overlay">
         <h1>Xuanting Chen</h1>
         <p>Data Scientist | Full-stack developer</p>
     </div>}
