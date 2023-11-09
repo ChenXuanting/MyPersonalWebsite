@@ -62,8 +62,8 @@ const Header = () => {
             {/* Add social media links based on the `socials` data */}
             <HStack>
               {socials.map((social, index) => (
-                <Tooltip label={social.name} aria-label='A tooltip'>
-                  <a key={index} href={social.url}>
+                <Tooltip key={social.name} label={social.name} aria-label='A tooltip'>
+                  <a href={social.url}>
                     <FontAwesomeIcon icon={social.icon} size="2x" />
                   </a>
                 </Tooltip>
