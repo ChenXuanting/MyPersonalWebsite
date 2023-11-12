@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { VStack } from "@chakra-ui/react";
+import { VStack, useBreakpointValue } from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
 import portrait from "../images/portrait.jpg"
 import TypingEffect from "./TypingEffect";
@@ -8,8 +8,7 @@ import '../css/LandingSection.css';
 const LandingSection = () => {
   const [circleSize, setCircleSize] = useState(0);
   const [typingFinished, setTypingFinished] = useState(false);
-
-  const isMobile = window.innerWidth <= 768;
+  const isBase = useBreakpointValue({ base: true, md: false });
 
   const texts = [
     "Hello, I am Theo! ",
@@ -33,7 +32,7 @@ const LandingSection = () => {
         return;
       }
 
-      if (isMobile) {
+      if (isBase) {
         setCircleSize(100);
         document.body.style.overflowY = "auto";
         window.removeEventListener('touchmove', handleScroll);
@@ -77,7 +76,7 @@ const LandingSection = () => {
       id="portraitDiv"
       style={{
         clipPath: `circle(${circleSize}% at 50% 100%)`, // Use clipPath for the reveal effect
-        animation: typingFinished && isMobile ? 'revealCircle 2s forwards' : undefined, // Apply the animation if typing is finished and on mobile
+        animation: typingFinished && isBase ? 'revealCircle 3s forwards' : undefined, // Apply the animation if typing is finished and on mobile
       }}
     />
     {circleSize >= 50 && <div className="text-overlay">

@@ -25,10 +25,12 @@ import {
   TableCaption,
   TableContainer,
   Code,
+  useBreakpointValue
 } from '@chakra-ui/react';
 import TwitterDetection from '../images/TwitterDetection.png';
 
 const ProjectsSection = () => {
+  const isBase = useBreakpointValue({ base: true, md: false });
   const { isOpen: isOpen0, onToggle: onToggle0 } = useDisclosure();
   const { isOpen: isOpen1, onToggle: onToggle1 } = useDisclosure();
 
@@ -83,8 +85,8 @@ const ProjectsSection = () => {
               <Stack>
               <Heading size="md">Twitter Offensive Language Detection</Heading>
               <Text py={2}>
-                Utilized emsembles of transformer-based models like BERT, ALBERT, and RoBERTa to identify offensive languages in over 14000 Twitter (now X) posts with an accuracy of 93.9% and an F1 score of 0.919.
-                This work is a fine-tuning of the pre-trained BERT family for sequence classification. Our fine-tuned model performs equivalently to the solution positioned at the third place of SemEval-2020 (82 teams).
+                Utilized ensembles of transformer-based models like BERT, ALBERT, and RoBERTa to identify offensive languages in over 14000 Twitter (now X) posts with an accuracy of 93.9% and an F1 score of 0.919.
+                {!isBase && ' This work is a fine-tuning of the pre-trained BERT family for sequence classification. Our fine-tuned model performs equivalently to the solution positioned at the third place of SemEval-2020 (82 teams).'}
               </Text>
               </Stack>
               </HStack>
