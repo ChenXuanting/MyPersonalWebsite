@@ -16,6 +16,7 @@ import {
   Image,
   Link,
   Text,
+  Card,
 } from "@chakra-ui/react";
 import * as Yup from 'yup';
 import FullScreenSection from "./FullScreenSection";
@@ -50,6 +51,7 @@ const ContactMeSection = () => {
     validationSchema: Yup.object({
       firstName: Yup.string().required('Required'),
       lastName: Yup.string().required('Required'),
+      lastName: Yup.string().required('Required'),
       email: Yup.string().email('Invalid email').required('Required'),
       comment: Yup.string().required('Required')
     }),
@@ -60,11 +62,16 @@ const ContactMeSection = () => {
       isDarkBackground = {false}
       backgroundColor="white"
       py={8}
+      px={4}
       spacing={8}
       minHeight="50vh"
     >
-      <Stack w="100%" spacing={4} direction={{ base: 'column', md: 'row' }} alignItems="center" justifyItems="center">
-        <VStack mw="1024px" alignItems="center" flex="6">
+      <Card w="100%" spacing={4} direction={{ base: 'column', md: 'row' }} alignItems="center" justifyItems="center"
+          bg="rgba(120, 110, 110, 0.04)"
+          backdropFilter="blur(10px)"
+          borderRadius="1rem"
+      >
+        <VStack mw="1024px" alignItems="center" flex="6" py={8}>
           <Heading as="h1" id="contactme-section" style={{fontFamily: "'Montserrat', sans-serif" }}>
             Contact me
           </Heading>
@@ -101,8 +108,8 @@ const ContactMeSection = () => {
                     <option value="business">
                       Business
                     </option>
-                    <option value="freelance">
-                      Freelance project
+                    <option value="bug">
+                      Bug report
                     </option>
                     <option value="personal">
                       Personal
@@ -126,29 +133,40 @@ const ContactMeSection = () => {
             </form>
           </Box>
         </VStack>
-        <VStack flex="4" alignItems="center" justifyItems="center">
-          <Heading style={{fontFamily: "'Montserrat', sans-serif" }}>
-            Powered by
-          </Heading>
-          <VStack alignItems="center" justifyItems="center" py={{ base: 10, sm: 30 }} spacing={4}>
-            <HStack>
-              <Image src={reactLogo} alt='react-logo' width="100%" boxSize={{ base: '90px', sm: '40px', md: '60px', lg:'90px' }}/>
-              <Text fontSize={{ base: '5xl', sm: '5xl' }} fontWeight="bold" fontFamily="Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,
-                                Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,
-                                Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji">
-                React
-              </Text>
-            </HStack>
-            <Link
-                href="https://chakra-ui.com/"
-                aria-label="Chakra UI Home"
-                mx={10}
-              >
-              <Image src={chakraLogo} alt='chakra-logo' width="300px"/>
-            </Link>
+        <Box
+          flex="4"
+          alignItems="center"
+          justifyItems="center"
+        >
+          <VStack
+            alignItems="center"
+            justifyItems="center"
+            w="60%"
+            py={4}
+          >
+            <Heading style={{fontFamily: "'Montserrat', sans-serif" }}>
+              Powered by
+            </Heading>
+            <VStack alignItems="center" justifyItems="center" py={{ base: 10, sm: 30 }} spacing={4}>
+              <HStack>
+                <Image src={reactLogo} alt='react-logo' width="100%" boxSize={{ base: '90px', sm: '60px', md:'60px', lg:'80px' }}/>
+                <Text fontSize={{ base: '5xl', sm: '5xl' }} fontWeight="bold" fontFamily="Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,
+                                  Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,
+                                  Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji">
+                  React
+                </Text>
+              </HStack>
+              <Link
+                  href="https://chakra-ui.com/"
+                  aria-label="Chakra UI Home"
+                  mx={10}
+                >
+                <Image src={chakraLogo} alt='chakra-logo' width="300px"/>
+              </Link>
+            </VStack>
           </VStack>
-        </VStack>
-      </Stack>
+        </Box>
+      </Card>
     </FullScreenSection>
   );
 };

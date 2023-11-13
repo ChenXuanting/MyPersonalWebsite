@@ -65,6 +65,7 @@ const ProjectsSection = () => {
         width="100%"
         style={{ marginTop: 0 }}
         flex="6"
+        p={4}
       >
         <Card
           direction={{ base: 'column', sm: 'row' }}
