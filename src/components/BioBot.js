@@ -6,8 +6,7 @@ const BioBot = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
 
-//   const openai = new OpenAI({apiKey: process.env.REACT_APP_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
-  const openai = new OpenAI({apiKey: process.env.REACT_APP_OPENAI_API_KEY});
+  const openai = new OpenAI({apiKey: process.env.REACT_APP_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
   const sendMessage = async () => {
     if (!input.trim()) return;
