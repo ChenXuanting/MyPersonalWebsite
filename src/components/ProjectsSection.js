@@ -39,13 +39,15 @@ const ProjectsSection = () => {
       backgroundColor="white"
       isDarkBackground={false}
       alignItems="flex-start"
+      id="projects-section"
     >
-      <Divider my={8} id="projects-section" />
+      <Divider my={8}/>
       <Stack
         direction={{ base: 'column', md: 'row' }}
         display="flex"
         justifyContent="center"
         alignItems={{ base: 'center', md: 'flex-start' }}
+        w="100%"
       >
       <Heading
         fontSize={{ base: '3xl', sm: '3xl', md: '4xl', lg: '4xl' }}
@@ -53,6 +55,7 @@ const ProjectsSection = () => {
         flex="2"
         textAlign="center"
         my={4}
+        fontFamily="'Montserrat', sans-serif"
       >
           Featured Projects
       </Heading>
@@ -84,8 +87,8 @@ const ProjectsSection = () => {
                 alt="Twitter Offensive Detection"
               />
               <Stack>
-              <Heading size="md">Twitter Offensive Language Detection</Heading>
-              <Text py={2}>
+              <Heading size="md" fontFamily="'Montserrat', sans-serif">Twitter Offensive Language Detection</Heading>
+              <Text py={2} fontFamily="'Montserrat', sans-serif">
                 Utilized ensembles of transformer-based models like BERT, ALBERT, and RoBERTa to identify offensive languages in over 14000 Twitter (now X) posts with an accuracy of 93.9% and an F1 score of 0.919.
                 {!isBase && ' This work is a fine-tuning of the pre-trained BERT family for sequence classification. Our fine-tuned model performs equivalently to the solution positioned at the third place of SemEval-2020 (82 teams).'}
               </Text>
