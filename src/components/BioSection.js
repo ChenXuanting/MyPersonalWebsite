@@ -25,8 +25,7 @@ const BioSection = () => {
   const [messages, setMessages] = useState([]);
   const chatWindowRef = useRef(null);
 
-  const openai = new OpenAI({apiKey: "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", dangerouslyAllowBrowser: true});
-  // const openai = new OpenAI({apiKey: process.env.REACT_APP_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
+  const openai = new OpenAI({apiKey: process.env.REACT_APP_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
   const sendMessage = async () => {
     if (!input.trim()) return;
