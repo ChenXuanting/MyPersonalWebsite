@@ -25,6 +25,12 @@ const BioSection = () => {
   const [messages, setMessages] = useState([]);
   const chatWindowRef = useRef(null);
 
+  const [tabIndex, setTabIndex] = useState(0);
+
+  const handleTabsChange = (index) => {
+    setTabIndex(index);
+  };
+
   const openai = new OpenAI({apiKey: process.env.REACT_APP_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
   const sendMessage = async () => {
@@ -79,7 +85,7 @@ const BioSection = () => {
       backgroundColor="white"
       px={4}
       spacing={8}
-      minHeight="55vh"
+      minHeight="40vh"
       alignItems="flex-end"
       id="bio-section"
     >
@@ -111,8 +117,9 @@ const BioSection = () => {
           style={{ marginTop: 0 }}
           flex="6"
           p={4}
+          pb={0}
         >
-        <Tabs position="relative" variant="unstyled" w="100%">
+        <Tabs index={tabIndex} onChange={handleTabsChange} position="relative" variant="unstyled" w="100%">
           <TabList>
             <Tab fontFamily="'Montserrat', sans-serif">Bio</Tab>
             <Tab fontFamily="'Montserrat', sans-serif">My AI assistant</Tab>
@@ -125,17 +132,25 @@ const BioSection = () => {
           />
           <TabPanels>
             <TabPanel>
-              <Text fontSize={18} fontFamily="'Montserrat', sans-serif">
-                Hello! My name is Xuanting Chen (陈宣廷), and I go by Theo!
-                I was confered the master of science in Computer Science degree from Duke University in fall 2023.
-                Prior to that, I obtained my bachelor's degree in Computer Science from Boston University.
-                In fall 2020, I had the luck to study with Prof. David Woodruff from Carnegie Mellon on problems involving optimization.
+              <Text fontSize={{ base: 15, md: 18 }} fontFamily="'Montserrat', sans-serif">
+              Hello! My name is Xuanting Chen (陈宣廷), but you can call me Theo. I recently earned my Master of Science in Computer Science from Duke University in Fall 2023,
+              following my Bachelor's degree in the same field from Boston University. During the summer of 2020, I had the opportunity to work with Professor David Woodruff
+              at Carnegie Mellon University, focusing on optimization problems. As of September 2023, I am working as a full-time Data Scientist Intern at Synergies
+              Intelligent Systems, Inc., located in Boston, MA.
+              My primary research interest is in deep learning, reinforcement learning, and causal inference.
+              I am also skilled in using frameworks like SpringBoot, Django, React, and various cloud hosting services.<br />
+              <br />
+              Outside work, I am an optimistic and humble individual who loves photography, music, and video games.
+              If you're interested in learning more about me, feel free to speak with{' '}
+              <Text as='button' onClick={() => setTabIndex(1)} color='blue.500' textDecoration='underline'>
+                my AI Assistant
+              </Text>, who is ready to answer any of your questions!
               </Text>
             </TabPanel>
             <TabPanel>
               <Card
               w="100%"
-              h="400px"
+              h={{ base: "450px", md: "300px"}}
               p="4"
               bg="rgba(120, 110, 110, 0.04)"
               backdropFilter="blur(10px)"
@@ -144,7 +159,7 @@ const BioSection = () => {
               >
                 <Card
                   ref={chatWindowRef}
-                  h="300px"  // Fixed height for the chat display window
+                  h={{ base: "400px", md: "230px"}}  // Fixed height for the chat display window
                   overflowY="auto"
                   backgroundColor="white"
                   borderRadius="5px"
@@ -185,6 +200,7 @@ const BioSection = () => {
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
                         placeholder=" Type your message..."
+                        fontFamily="'Montserrat', sans-serif"
                     />
                     <Button onClick={sendMessage} ml="2" colorScheme="blue">Send</Button>
                 </Flex>
