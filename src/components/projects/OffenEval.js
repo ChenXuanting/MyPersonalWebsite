@@ -60,7 +60,8 @@ const OffenEval = () => {
                 <Box w={{ base: '95%', sm: '85%' }}>
                 <Heading size="sm">Motivation</Heading>
                 <Text py={2}>
-                Semantic analysis is a significant field within natural language processing, extensively applied in applications such as spam detection, social media monitoring, and voice of the customer (VOC) analysis, among others. Our project plays a crucial role in social monitoring and, consequently, represents vital interests.
+                Semantic analysis is a significant field within natural language processing, extensively applied in applications such as spam detection, social media monitoring, and voice of the customer (VOC) analysis, among others.
+                Our project demonstrates a classic use case of semantic analysis in social monitoring and, consequently, represents vital interests.
                 </Text>
                 <Heading size="sm">Approach</Heading>
                 <Text py={2}>

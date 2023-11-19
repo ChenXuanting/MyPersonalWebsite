@@ -14,16 +14,21 @@ import {
     Table,
     Thead,
     Tbody,
-    Tfoot,
     Tr,
     Th,
     Td,
     TableContainer,
     Code,
+    Link,
     useDisclosure,
     useBreakpointValue,
   } from '@chakra-ui/react';
-import AnomalyDetection from '../../images/AnomalyDetection.png';
+import AnomalyDetection from '../../images/AnomalyDetection.png'
+import ADTrainSample from '../../images/ADTrainSample.png';
+import ADTestSample from '../../images/ADTestSample.png'
+import ADTrainingError from '../../images/ADTrainingError.png'
+import ADTestingError from '../../images/ADTestingError.png'
+import ADOutputSample from '../../images/ADOutputSample.png'
 
 const OffenEval = () => {
     const isBase = useBreakpointValue({ base: true, md: false });
@@ -49,8 +54,8 @@ const OffenEval = () => {
               <Stack>
               <Heading size="md" fontFamily="'Montserrat', sans-serif">Time-series Anomaly Detection</Heading>
               <Text py={2} fontFamily="'Montserrat', sans-serif">
-                Utilized ensembles of transformer-based models like BERT, ALBERT, and RoBERTa to identify offensive languages in over 14000 Twitter (now X) posts with an accuracy of 93.9% and an F1 score of 0.919.
-                {!isBase && ' This work is a fine-tuning of the pre-trained BERT family for sequence classification. Our fine-tuned model performs equivalently to the solution positioned at the third place of SemEval-2020 (82 teams).'}
+                Implemented and deployed autoencoders to help clients detect anomalous data points in time-series signals collected from reflow ovens in production environments. Obatined an accuracy rate of 0.84.
+                {!isBase && ' This project applied deep learning algorithms to industrial data and achieved exceptional results without requiring extensive training resources.'}
               </Text>
               </Stack>
               </HStack>
@@ -60,198 +65,134 @@ const OffenEval = () => {
                 <Box w={{ base: '95%', sm: '85%' }}>
                 <Heading size="sm">Motivation</Heading>
                 <Text py={2}>
-                Semantic analysis is a significant field within natural language processing, extensively applied in applications such as spam detection, social media monitoring, and voice of the customer (VOC) analysis, among others. Our project plays a crucial role in social monitoring and, consequently, represents vital interests.
+                A reflow oven is primarily used to reflow solder surface-mounted electronic components onto printed circuit boards (PCBs). In commercial mass production, these ovens are structured as elongated tunnels equipped with a conveyor belt for transporting PCBs. They feature several zones, each with individually controlled heating temperatures.
+                As PCBs progress through the oven, they are exposed to different thermal zones at a regulated speed. Technicians fine-tune the conveyor speed and temperatures of each zone to meet specific thermal profiles, making precise control of temperature patterns crucial.
+                In this context, we employed autoencoders to enhance stability control, ensuring reliable management of temperature variations.
                 </Text>
                 <Heading size="sm">Approach</Heading>
                 <Text py={2}>
-                Sample input:
+                  Training sample:
                 </Text>
-                <TableContainer w="100%" overflowX="auto">
-                  <Table size='sm'>
-                    <Thead>
-                      <Tr>
-                        <Th fontSize={["xs", "sm"]}>Sentence</Th>
-
-                        <Th fontSize={["xs", "sm"]}>Label</Th>
-                      </Tr>
-                    </Thead>
-                    <Tbody>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">I guess Netflix is now the best channel for a TV adaptation of the video game series Half Life.</Td>
-                        <Td fontSize={["xs", "sm"]}>NOT</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">@USER Thank you Chris it was very fun to make !</Td>
-                        <Td fontSize={["xs", "sm"]}>NOT</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">@USER What the fuck</Td>
-                        <Td fontSize={["xs", "sm"]}>OFF</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">all i wanted was a jikook gc and they ended up sending that disgusting video 😭</Td>
-                        <Td fontSize={["xs", "sm"]}>NOT</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">@USER Yeah - respect for the country. No one respects you though you fat traitor</Td>
-                        <Td fontSize={["xs", "sm"]}>OFF</Td>
-                      </Tr>
-                    </Tbody>
-                    <Tfoot>
-                      <Tr>
-                        <Th fontSize={["xs", "sm"]}>Sentence</Th>
-                        <Th fontSize={["xs", "sm"]}>Label</Th>
-                      </Tr>
-                    </Tfoot>
-                  </Table>
-                </TableContainer>
+                <Image
+                  objectFit="cover"
+                  src={ADTrainSample}
+                  alt="Anomaly Detection training sample"
+                  maxW={{base:"100%", xl:"80%"}}
+                />
                 <Text py={2}>
-                  Flow: raw data &rarr; preprocessed data &rarr; tokenized data &rarr; fine-tuning &rarr; prediction &rarr; ensemble.
+                  Test sample (human labeled):
+                </Text>
+                <Image
+                  objectFit="cover"
+                  src={ADTestSample}
+                  alt="Anomaly Detection testing sample"
+                  maxW={{base:"100%", xl:"80%"}}
+                />
+                <Text py={2}>
+                  Flow: train data &rarr; fitted autoencoder &rarr; feed test data &rarr; reconstruction error &rarr; analyze errors &rarr; mark anomalies.
                 </Text>
                 <Text py={2}>
-                  Key code segment 0: model configuration<br />
+                We utilized training data as reference samples to calibrate our autoencoder, carefully monitoring reconstruction errors throughout the process.
+                When the model processes test data, it exhibits a distinct distribution of reconstruction errors compared to the training phase.
+                Patterns not represented in the training data typically result in higher reconstruction errors. By examining these discrepancies, we successfully identify anomalous points.
+                </Text>
+                <Text py={2}>
+                  Key code segment 0: model structure<br />
                 </Text>
                   <Code colorScheme="teal" variant="subtle" my={2}>
-                    <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{`Model_type = 'albert'     #All types: bert, roberta, albert, xlmroberta
-Model_name = 'albert-base-v2'
-            #All models: 'albert-base-v1', 'albert-large-v1', 'albert-xlarge-v1', 'albert-xxlarge-v1'
-            #'albert-base-v2', 'albert-large-v2', 'albert-xlarge-v2', 'albert-xxlarge-v2'
-            #'roberta-base', 'roberta-large'
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-config_class, model_class, tokenizer_class = AlbertConfig, AlbertForSequenceClassification, AlbertTokenizer`}</pre>
+                    <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{`model = keras.Sequential(
+    [
+        layers.Input(shape=(x_train.shape[1], x_train.shape[2])),
+        layers.Conv1D(
+            filters=32, kernel_size=7, padding="same", strides=2, activation="relu"
+        ),
+        layers.Dropout(rate=0.2),
+        layers.Conv1D(
+            filters=16, kernel_size=7, padding="same", strides=2, activation="relu"
+        ),
+        layers.Conv1DTranspose(
+            filters=16, kernel_size=7, padding="same", strides=2, activation="relu"
+        ),
+        layers.Dropout(rate=0.2),
+        layers.Conv1DTranspose(
+            filters=32, kernel_size=7, padding="same", strides=2, activation="relu"
+        ),
+        layers.Conv1DTranspose(filters=1, kernel_size=7, padding="same"),
+    ]
+)`}</pre>
                   </Code><br />
+                  <Text py={2}>
                   Key code segment 1: customized weight decay optimizer
+                  </Text>
                     <Code colorScheme="orange" variant="subtle" my={2}>
-                   <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{`no_decay = ['bias', 'LayerNorm.weight']
-optimizer_grouped_parameters = [
-  {'params': [p for n, p in model.named_parameters() if not any(nd in n for nd in no_decay)], 'weight_decay': weight_decay},
-  {'params': [p for n, p in model.named_parameters() if any(nd in n for nd in no_decay)], 'weight_decay': 0.0}
-]
-optimizer = AdamW(optimizer_grouped_parameters, lr=LR, eps=adam_eps)`}</pre>
+                   <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{`# data i is an anomaly if samples [(i - timesteps + 1) to (i)] are anomalies
+anomalous_data_indices = []
+anomaly_threshold = 0.35 * TIME_STEPS
+for data_idx in range(TIME_STEPS - 1, len(test_value) - TIME_STEPS + 1):
+    if np.sum(anomalies[data_idx - TIME_STEPS + 1 : data_idx]) >= anomaly_threshold:
+        anomalous_data_indices.append(data_idx)`}</pre>
                     </Code>
-                  Key code segment 2: ensemble<br />
-                    <Code colorScheme="teal" variant="subtle" my={2}>
-                    <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{`merged_preds = np.concatenate(preds, axis = 1)
-majority_preds = []
-for i in range(merged_preds.shape[0]):
-  majority_preds.append(Counter(merged_preds[i].astype(int)).most_common(1)[0][0])
-final_preds = majority_preds`}</pre>
-                    </Code>
+                    <Text py={2}>
+                   Sample discrepancy in construction errors:
+                  </Text>
+                    <HStack spacing={4} w='100%'>
+                    <Image
+                      objectFit="cover"
+                      src={ADTrainingError}
+                      alt="Anomaly Detection training error"
+                      maxW={{base:"50%", xl:"40%"}}
+                    />
+                    <Image
+                      objectFit="cover"
+                      src={ADTestingError}
+                      alt="Anomaly Detection testing error"
+                      maxW={{base:"50%", xl:"40%"}}
+                    />
+                    </HStack>
                 <Heading size="sm">Result</Heading>
                 <TableContainer w="100%" overflowX="auto" py={2}>
                   <Table size='sm'>
                     <Thead>
                       <Tr>
-                        <Th fontSize={["xs", "sm"]}>Model</Th>
-                        <Th fontSize={["xs", "sm"]}>Macro F1</Th>
-                        <Th fontSize={["xs", "sm"]}>Accuracy</Th>
+                        <Th fontSize={["xs", "sm"]}>Label</Th>
+                        <Th fontSize={["xs", "sm"]}>Precision</Th>
+                        <Th fontSize={["xs", "sm"]}>Recall</Th>
                       </Tr>
                     </Thead>
                     <Tbody>
                       <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">All NOT</Td>
-                        <Td fontSize={["xs", "sm"]}>41.93</Td>
-                        <Td fontSize={["xs", "sm"]}>72.21</Td>
+                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Normal</Td>
+                        <Td fontSize={["xs", "sm"]}>0.86</Td>
+                        <Td fontSize={["xs", "sm"]}>0.94</Td>
                       </Tr>
                       <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">All OFF</Td>
-                        <Td fontSize={["xs", "sm"]}>21.74</Td>
-                        <Td fontSize={["xs", "sm"]}>27.79</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]}></Td>
-                        <Td fontSize={["xs", "sm"]} fontWeight="bold">Single Models</Td>
-                        <Td fontSize={["xs", "sm"]}></Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">BERT-base</Td>
-                        <Td fontSize={["xs", "sm"]}>90.93</Td>
-                        <Td fontSize={["xs", "sm"]}>92.26</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">BERT-large</Td>
-                        <Td fontSize={["xs", "sm"]}>91.42</Td>
-                        <Td fontSize={["xs", "sm"]}>92.74</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">RoBERTa-base</Td>
-                        <Td fontSize={["xs", "sm"]}>91.70</Td>
-                        <Td fontSize={["xs", "sm"]}>92.87</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">RoBERTa-large</Td>
-                        <Td fontSize={["xs", "sm"]} fontWeight="bold">91.86</Td>
-                        <Td fontSize={["xs", "sm"]} fontWeight="bold">93.10</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">RoBERTa-large MLM</Td>
-                        <Td fontSize={["xs", "sm"]} textDecoration="underline">91.99</Td>
-                        <Td fontSize={["xs", "sm"]} textDecoration="underline">93.21</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">ALBERT-large-v1</Td>
-                        <Td fontSize={["xs", "sm"]}>91.50</Td>
-                        <Td fontSize={["xs", "sm"]}>92.15</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">ALBERT-large-v2</Td>
-                        <Td fontSize={["xs", "sm"]}>91.49</Td>
-                        <Td fontSize={["xs", "sm"]}>92.13</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">ALBERT-xxlarge-v1</Td>
-                        <Td fontSize={["xs", "sm"]}>91.39</Td>
-                        <Td fontSize={["xs", "sm"]}>92.42</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">ALBERT-xxlarge-v2</Td>
-                        <Td fontSize={["xs", "sm"]}>91.55</Td>
-                        <Td fontSize={["xs", "sm"]}>92.91</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]}></Td>
-                        <Td fontSize={["xs", "sm"]} fontWeight="bold">Ensembles</Td>
-                        <Td fontSize={["xs", "sm"]}></Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">BERT</Td>
-                        <Td fontSize={["xs", "sm"]}>91.60</Td>
-                        <Td fontSize={["xs", "sm"]}>93.15</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">RoBERTa</Td>
-                        <Td fontSize={["xs", "sm"]}>91.83</Td>
-                        <Td fontSize={["xs", "sm"]}>93.03</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">ALBERT-all</Td>
-                        <Td fontSize={["xs", "sm"]} fontWeight="bold">91.90</Td>
-                        <Td fontSize={["xs", "sm"]} fontWeight="bold">93.49</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">ALBERT-xxlargea</Td>
-                        <Td fontSize={["xs", "sm"]}>91.58</Td>
-                        <Td fontSize={["xs", "sm"]}>93.27</Td>
+                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Abnormal</Td>
+                        <Td fontSize={["xs", "sm"]}>0.76</Td>
+                        <Td fontSize={["xs", "sm"]}>0.54</Td>
                       </Tr>
                     </Tbody>
-                    <Tfoot>
-                      <Tr>
-                        <Th fontSize={["xs", "sm"]}>Model</Th>
-                        <Th fontSize={["xs", "sm"]}>Macro F1</Th>
-                        <Th fontSize={["xs", "sm"]}>Accuracy</Th>
-                      </Tr>
-                    </Tfoot>
                   </Table>
                 </TableContainer>
+                <Image
+                objectFit="cover"
+                maxW={{base:"100%", xl:"80%"}}
+                src={ADOutputSample}
+                alt="Anomaly Detection Output Sample"
+              />
                 <Heading size="sm">Comment</Heading>
                 <Text py={2}>
-                  In this project we successfully fine-tuned pre-trained language models on our specific task and accquired excellent result.
+                  In our project, we effectively employed an autoencoder to detect anomalies in time-series data.
+                  Our approach aligns with the methodologies benchmarked in the paper{' '}
+                  <Link href="https://openreview.net/pdf?id=r8IvOsnHchr" isExternal color="blue.500">
+                    "Revisiting Time Series Outlier Detection: Definitions and Benchmarks."
+                  </Link>{' '}
+                  by Lai et al.
                 </Text>
                 </Box>
               </CardBody>
             </Collapse>
             <CardFooter pt={0} gap={4} display='flex' alignContent='center' justifyContent='center'>
-              <Heading display='flex' flexDirection='column' alignContent='center' justifyContent='center' size='xs'>Dec 2021</Heading>
+              <Heading display='flex' flexDirection='column' alignContent='center' justifyContent='center' size='xs'>Sep 2023</Heading>
               <Button
                 variant="solid"
                 colorScheme="blue"
