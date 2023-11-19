@@ -8,7 +8,8 @@ import {
 } from '@chakra-ui/react';
 
 import OffenEval from './projects/OffenEval';
-import AnomalyDetection from './projects/AnomalyDetect'
+import AnomalyDetection from './projects/AnomalyDetect';
+import XAI from './projects/XAI';
 
 const ProjectsSection = () => {
 
@@ -50,6 +51,7 @@ const ProjectsSection = () => {
       >
         <OffenEval />
         <AnomalyDetection />
+        <XAI />
       </Box>
       </Stack>
     </FullScreenSection>

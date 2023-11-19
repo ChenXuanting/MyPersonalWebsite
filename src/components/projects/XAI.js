@@ -23,7 +23,7 @@ import {
     useDisclosure,
     useBreakpointValue,
   } from '@chakra-ui/react';
-import AnomalyDetection from '../../images/AnomalyDetection.png'
+import XAI from '../../images/XAI.png'
 import ADTrainSample from '../../images/ADTrainSample.png';
 import ADTestSample from '../../images/ADTestSample.png'
 import ADTrainingError from '../../images/ADTrainingError.png'
@@ -48,13 +48,13 @@ const OffenEval = () => {
               <Image
                 objectFit="cover"
                 maxW={{ base: '150px', sm: '200px' }}
-                src={AnomalyDetection}
-                alt="Anomaly Detection in time-series signals"
+                src={XAI}
+                alt="Fairness in XAI"
               />
               <Stack>
-              <Heading size="md" fontFamily="'Montserrat', sans-serif">Time-series Anomaly Detection</Heading>
+              <Heading size="md" fontFamily="'Montserrat', sans-serif">Feature-based Fairness Evaluation through XAI Methods</Heading>
               <Text py={2} fontFamily="'Montserrat', sans-serif">
-                Implemented and deployed autoencoders to help clients detect anomalous data points in time-series signals collected from reflow ovens in production environments. Obatined an accuracy rate of 0.84.
+                fawdf
                 {!isBase && ' This project applied deep learning algorithms to industrial data and achieved exceptional results without requiring extensive training resources.'}
               </Text>
               </Stack>
@@ -192,7 +192,7 @@ for data_idx in range(TIME_STEPS - 1, len(test_value) - TIME_STEPS + 1):
               </CardBody>
             </Collapse>
             <CardFooter pt={0} gap={4} display='flex' alignContent='center' justifyContent='center'>
-              <Heading display='flex' flexDirection='column' alignContent='center' justifyContent='center' size='xs'>Sep 2023</Heading>
+              <Heading display='flex' flexDirection='column' alignContent='center' justifyContent='center' size='xs'>Apr 2023</Heading>
               <Button
                 variant="solid"
                 colorScheme="blue"
