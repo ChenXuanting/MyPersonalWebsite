@@ -11,24 +11,19 @@ import {
     Image,
     Collapse,
     HStack,
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    TableContainer,
-    Code,
     Link,
     useDisclosure,
     useBreakpointValue,
   } from '@chakra-ui/react';
 import XAI from '../../images/XAI.png'
-import ADTrainSample from '../../images/ADTrainSample.png';
-import ADTestSample from '../../images/ADTestSample.png'
-import ADTrainingError from '../../images/ADTrainingError.png'
-import ADTestingError from '../../images/ADTestingError.png'
-import ADOutputSample from '../../images/ADOutputSample.png'
+import Def1 from '../../images/XAIDef1.png'
+import Def1Sample from '../../images/XAI-DPSample.png'
+import Def2 from '../../images/XAIDef2.png'
+import Def2Sample from '../../images/XAI-CFSample.png'
+import Def3 from '../../images/XAIDef3.png'
+import Def3Sample from '../../images/XAI-IFSample.png'
+import RacialAdult from '../../images/RacialAdult.png'
+import RacialCOMPAS from '../../images/RacialCOMPAS.png'
 
 const OffenEval = () => {
     const isBase = useBreakpointValue({ base: true, md: false });
@@ -54,8 +49,8 @@ const OffenEval = () => {
               <Stack>
               <Heading size="md" fontFamily="'Montserrat', sans-serif">Feature-based Fairness Evaluation through XAI Methods</Heading>
               <Text py={2} fontFamily="'Montserrat', sans-serif">
-                fawdf
-                {!isBase && ' This project applied deep learning algorithms to industrial data and achieved exceptional results without requiring extensive training resources.'}
+                In this project we delve into feature-level fairness using Explainable Artificial Intelligence (XAI) techniques in order to address the critical challenge of ensuring fairness in machine learning models, particularly those used in high-stakes decision-making.
+                {!isBase && ' We came up with three fairness definitions as well as the respective algorithms and successfully verified the method on real datasets.'}
               </Text>
               </Stack>
               </HStack>
@@ -65,128 +60,97 @@ const OffenEval = () => {
                 <Box w={{ base: '95%', sm: '85%' }}>
                 <Heading size="sm">Motivation</Heading>
                 <Text py={2}>
-                A reflow oven is primarily used to reflow solder surface-mounted electronic components onto printed circuit boards (PCBs). In commercial mass production, these ovens are structured as elongated tunnels equipped with a conveyor belt for transporting PCBs. They feature several zones, each with individually controlled heating temperatures.
-                As PCBs progress through the oven, they are exposed to different thermal zones at a regulated speed. Technicians fine-tune the conveyor speed and temperatures of each zone to meet specific thermal profiles, making precise control of temperature patterns crucial.
-                In this context, we employed autoencoders to enhance stability control, ensuring reliable management of temperature variations.
+                We were awared of the need to ensure fairness in machine learning models used in critical decision-making, particularly in addressing the biases in "black-box" models.
+                We aim to leverage Explainable Artificial Intelligence (XAI) methods, focusing on feature-level fairness, to provide a deeper understanding and mitigation of biases in these systems.
+                This approach goes beyond traditional outcome-level analysis, offering a more nuanced examination of biases at the feature level, and proposes new fairness definitions tailored for the XAI context.
                 </Text>
-                <Heading size="sm">Approach</Heading>
+                <Heading size="sm">Definition</Heading>
                 <Text py={2}>
-                  Training sample:
+                  Demographic Parity:
                 </Text>
                 <Image
                   objectFit="cover"
-                  src={ADTrainSample}
-                  alt="Anomaly Detection training sample"
+                  src={Def1}
+                  alt="XAI-DP"
                   maxW={{base:"100%", xl:"80%"}}
                 />
                 <Text py={2}>
-                  Test sample (human labeled):
+                  XAI-DP sample:
                 </Text>
                 <Image
                   objectFit="cover"
-                  src={ADTestSample}
-                  alt="Anomaly Detection testing sample"
+                  src={Def1Sample}
+                  alt="XAI-DP sample"
                   maxW={{base:"100%", xl:"80%"}}
                 />
                 <Text py={2}>
-                  Flow: train data &rarr; fitted autoencoder &rarr; feed test data &rarr; reconstruction error &rarr; analyze errors &rarr; mark anomalies.
+                Counterfactual Fairness:
                 </Text>
+                <Image
+                  objectFit="cover"
+                  src={Def2}
+                  alt="XAI-CF"
+                  maxW={{base:"100%", xl:"80%"}}
+                />
                 <Text py={2}>
-                We utilized training data as reference samples to calibrate our autoencoder, carefully monitoring reconstruction errors throughout the process.
-                When the model processes test data, it exhibits a distinct distribution of reconstruction errors compared to the training phase.
-                Patterns not represented in the training data typically result in higher reconstruction errors. By examining these discrepancies, we successfully identify anomalous points.
+                  XAI-DP sample:
                 </Text>
+                <Image
+                  objectFit="cover"
+                  src={Def2Sample}
+                  alt="XAI-CF sample"
+                  maxW={{base:"100%", xl:"80%"}}
+                />
                 <Text py={2}>
-                  Key code segment 0: model structure<br />
+                Interventional Fairness:
                 </Text>
-                  <Code colorScheme="teal" variant="subtle" my={2}>
-                    <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{`model = keras.Sequential(
-    [
-        layers.Input(shape=(x_train.shape[1], x_train.shape[2])),
-        layers.Conv1D(
-            filters=32, kernel_size=7, padding="same", strides=2, activation="relu"
-        ),
-        layers.Dropout(rate=0.2),
-        layers.Conv1D(
-            filters=16, kernel_size=7, padding="same", strides=2, activation="relu"
-        ),
-        layers.Conv1DTranspose(
-            filters=16, kernel_size=7, padding="same", strides=2, activation="relu"
-        ),
-        layers.Dropout(rate=0.2),
-        layers.Conv1DTranspose(
-            filters=32, kernel_size=7, padding="same", strides=2, activation="relu"
-        ),
-        layers.Conv1DTranspose(filters=1, kernel_size=7, padding="same"),
-    ]
-)`}</pre>
-                  </Code><br />
-                  <Text py={2}>
-                  Key code segment 1: resonstruction error analysis
-                  </Text>
-                    <Code colorScheme="orange" variant="subtle" my={2}>
-                   <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{`# data i is an anomaly if samples [(i - timesteps + 1) to (i)] are anomalies
-anomalous_data_indices = []
-anomaly_threshold = 0.35 * TIME_STEPS
-for data_idx in range(TIME_STEPS - 1, len(test_value) - TIME_STEPS + 1):
-    if np.sum(anomalies[data_idx - TIME_STEPS + 1 : data_idx]) >= anomaly_threshold:
-        anomalous_data_indices.append(data_idx)`}</pre>
-                    </Code>
-                    <Text py={2}>
-                   Sample discrepancy in construction errors:
-                  </Text>
-                    <HStack spacing={4} w='100%'>
-                    <Image
-                      objectFit="cover"
-                      src={ADTrainingError}
-                      alt="Anomaly Detection training error"
-                      maxW={{base:"50%", xl:"40%"}}
-                    />
-                    <Image
-                      objectFit="cover"
-                      src={ADTestingError}
-                      alt="Anomaly Detection testing error"
-                      maxW={{base:"50%", xl:"40%"}}
-                    />
-                    </HStack>
+                <Image
+                  objectFit="cover"
+                  src={Def3}
+                  alt="XAI-IF"
+                  maxW={{base:"100%", xl:"80%"}}
+                />
+                <Text py={2}>
+                  XAI-IF sample:
+                </Text>
+                <Image
+                  objectFit="cover"
+                  src={Def3Sample}
+                  alt="XAI-IF sample"
+                  maxW={{base:"100%", xl:"80%"}}
+                />
                 <Heading size="sm">Result</Heading>
-                <TableContainer w="100%" overflowX="auto" py={2}>
-                  <Table size='sm'>
-                    <Thead>
-                      <Tr>
-                        <Th fontSize={["xs", "sm"]}>Label</Th>
-                        <Th fontSize={["xs", "sm"]}>Precision</Th>
-                        <Th fontSize={["xs", "sm"]}>Recall</Th>
-                      </Tr>
-                    </Thead>
-                    <Tbody>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Normal</Td>
-                        <Td fontSize={["xs", "sm"]}>0.86</Td>
-                        <Td fontSize={["xs", "sm"]}>0.94</Td>
-                      </Tr>
-                      <Tr>
-                        <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Abnormal</Td>
-                        <Td fontSize={["xs", "sm"]}>0.76</Td>
-                        <Td fontSize={["xs", "sm"]}>0.54</Td>
-                      </Tr>
-                    </Tbody>
-                  </Table>
-                </TableContainer>
+                <Text py={2}>
+                  We successfully indentified the racial bias and gender bias in the <Link href="https://archive.ics.uci.edu/dataset/2/adult" isExternal color="blue.500">
+                    Adult Income Dataset
+                  </Link>,{' '}the racial bias in the <Link href="https://github.com/propublica/compas-analysis" isExternal color="blue.500">
+                    COMPAS Dataset
+                  </Link>,{' '}and the foreigner bias in the <Link href="https://archive.ics.uci.edu/dataset/144/statlog+german+credit+data" isExternal color="blue.500">
+                    German Credit Dataset
+                  </Link>. The following are a few examples.
+                </Text>
+                <Text py={2}>
+                  Racial bias in the Adult Income Dataset in the scope of demographic parity, where the marital status feature suggests non-trivial discrepancy:
+                </Text>
                 <Image
-                objectFit="cover"
-                maxW={{base:"100%", xl:"80%"}}
-                src={ADOutputSample}
-                alt="Anomaly Detection Output Sample"
-              />
+                    objectFit="cover"
+                    maxW={{base:"100%", xl:"80%"}}
+                    src={RacialAdult}
+                    alt="Racial bias detected from the Adult income dataset using XAI-DP"
+                />
+                <Text py={2}>
+                  Racial bias in the COMPAS Dataset in the scope of Interventional Fairness, where the age factor suggests non-trivial discrepancy:
+                </Text>
+                <Image
+                    objectFit="cover"
+                    maxW={{base:"100%", xl:"80%"}}
+                    src={RacialCOMPAS}
+                    alt="Racial bias detected from the COMPAS dataset using XAI-IF"
+                />
                 <Heading size="sm">Comment</Heading>
                 <Text py={2}>
-                  In our project, we effectively employed an autoencoder to detect anomalies in time-series data.
-                  Our approach aligns with the methodologies benchmarked in the paper{' '}
-                  <Link href="https://openreview.net/pdf?id=r8IvOsnHchr" isExternal color="blue.500">
-                    "Revisiting Time Series Outlier Detection: Definitions and Benchmarks."
-                  </Link>{' '}
-                  by Lai et al.
+                In our project, we developed an effective method to assess and quantify model unfairness using post-hoc explanation techniques like SHAP.
+                This approach yielded robust experimental results that substantiate its efficacy.
                 </Text>
                 </Box>
               </CardBody>
