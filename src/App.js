@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import BioSection from "./components/BioSection";
 import { AlertProvider } from "./context/alertContext";
 import Alert from "./components/Alert";
+import 'katex/dist/katex.min.css';
 
 function App() {
   return (

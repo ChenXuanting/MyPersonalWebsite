@@ -63,7 +63,7 @@ const Header = () => {
             <HStack>
               {socials.map((social, index) => (
                 <Tooltip key={social.name} label={social.name} aria-label='A tooltip'>
-                  <a href={social.url}>
+                  <a href={social.url} target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={social.icon} size="2x" />
                   </a>
                 </Tooltip>

@@ -10,6 +10,8 @@ import {
 import OffenEval from './projects/OffenEval';
 import AnomalyDetection from './projects/AnomalyDetect';
 import XAI from './projects/XAI';
+import TransferLearning from './projects/TransferLearning'
+import DjangoBackendForSmallRestaurants from './projects/DjangoBackendForSmallRestaurants'
 
 const ProjectsSection = () => {
 
@@ -52,6 +54,8 @@ const ProjectsSection = () => {
         <OffenEval />
         <AnomalyDetection />
         <XAI />
+        <TransferLearning />
+        <DjangoBackendForSmallRestaurants />
       </Box>
       </Stack>
     </FullScreenSection>
