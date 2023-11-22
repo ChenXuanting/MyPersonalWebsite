@@ -1,5 +1,6 @@
-import React, {useEffect} from "react";
+import React, {useState} from "react";
 import { useFormik } from "formik";
+import axios from 'axios';
 import {
   Box,
   Button,
@@ -12,7 +13,6 @@ import {
   Select,
   Textarea,
   VStack,
-  Stack,
   Image,
   Link,
   Text,
@@ -20,23 +20,14 @@ import {
 } from "@chakra-ui/react";
 import * as Yup from 'yup';
 import FullScreenSection from "./FullScreenSection";
-import useSubmit from "../hooks/useSubmit";
 import {useAlertContext} from "../context/alertContext";
 import reactLogo from "../images/React-icon.svg";
 import chakraLogo from "../images/chakra-logo.svg"
 
 const ContactMeSection = () => {
-  const {isLoading, response, submit} = useSubmit();
   const { onOpen } = useAlertContext();
+  const [isSending, setIsSending] = useState(false);
 
-  useEffect(() => {
-    if (response) {
-      onOpen(response.type, response.message);
-      if (response.type === 'success') {
-        formik.resetForm();
-      }
-    }
-  }, [response]);
 
   const formik = useFormik({
     initialValues: {
@@ -46,7 +37,16 @@ const ContactMeSection = () => {
       comment: ''
     },
     onSubmit: async (values) => {
-      await submit("some-url", values);
+      setIsSending(true);
+      try {
+        const response = await axios.post('/api/send-email', values);
+        onOpen('success', 'Message sent successfully!');
+        formik.resetForm();
+      } catch (error) {
+        onOpen('error', 'Failed to send message.');
+      } finally {
+        setIsSending(false); // Stop loading
+      }
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required('Required'),
@@ -126,7 +126,7 @@ const ContactMeSection = () => {
                   />
                   <FormErrorMessage>{formik.errors.comment}</FormErrorMessage>
                 </FormControl>
-                <Button type="submit" colorScheme="blue" width="full" isLoading={isLoading}>
+                <Button type="submit" colorScheme="blue" width="full" isLoading={isSending}>
                   Send
                 </Button>
               </VStack>

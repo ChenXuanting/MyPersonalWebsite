@@ -18,18 +18,53 @@ import {
     Th,
     Td,
     TableContainer,
-    Code,
-    Link,
     useDisclosure,
     useBreakpointValue,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
   } from '@chakra-ui/react';
 import RestaurantBackend from '../../images/RestaurantBackend.png'
-import AnomalyDetection from '../../images/AnomalyDetection.png'
-import ADTrainSample from '../../images/ADTrainSample.png';
-import ADTestSample from '../../images/ADTestSample.png'
-import ADTrainingError from '../../images/ADTrainingError.png'
-import ADTestingError from '../../images/ADTestingError.png'
-import ADOutputSample from '../../images/ADOutputSample.png'
+import PeerReview1 from '../../images/PeerReview1.png';
+import PeerReview2 from '../../images/PeerReview2.png';
+import PeerReview3 from '../../images/PeerReview3.png';
+import PeerReview4 from '../../images/PeerReview4.png';
+import PeerReview5 from '../../images/PeerReview5.png';
+import PeerReview6 from '../../images/PeerReview6.png';
+import PeerReview7 from '../../images/PeerReview7.png';
+
+function PeerReviewModal() {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    return (
+      <>
+        <Text color="blue.500" cursor="pointer" onClick={onOpen}>
+          Click here to see the review.
+        </Text>
+
+        <Modal isOpen={isOpen} onClose={onClose} size="xl">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Peer Review</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Image src={PeerReview1} alt="Peer Review pic 1" />
+              <Image src={PeerReview2} alt="Peer Review pic 2" />
+              <Image src={PeerReview3} alt="Peer Review pic 3" />
+              <Image src={PeerReview4} alt="Peer Review pic 4" />
+              <Image src={PeerReview5} alt="Peer Review pic 5" />
+              <Image src={PeerReview6} alt="Peer Review pic 6" />
+              <Image src={PeerReview7} alt="Peer Review pic 7" />
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      </>
+    );
+  }
 
 const OffenEval = () => {
     const isBase = useBreakpointValue({ base: true, md: false });
@@ -55,8 +90,8 @@ const OffenEval = () => {
               <Stack>
               <Heading size="md" fontFamily="'Montserrat', sans-serif">Django Backend for Small Restaurants</Heading>
               <Text py={2} fontFamily="'Montserrat', sans-serif">
-                Implemented and deployed autoencoders to help clients detect anomalous data points in time-series signals collected from reflow ovens in production environments. Obatined an accuracy rate of 0.84.
-                {!isBase && ' This project applied deep learning algorithms to industrial data and achieved exceptional results without requiring extensive training resources.'}
+                Created a fully functioning API project for small restaurants so that the client application developers can use the APIs to develop web and mobile applications.
+                {!isBase && ' People with different roles will be able to browse, add and edit menu items, place orders, browse orders, assign delivery crew to orders and finally deliver the orders. '}
               </Text>
               </Stack>
               </HStack>
@@ -85,19 +120,19 @@ const OffenEval = () => {
                         <Tbody>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/users</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">No role required</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">No role required</Td>
                             <Td fontSize={["xs", "sm"]}>POST</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Creates a new user with name, email and password</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/users/users/me/</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Anyone with a valid user token</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Anyone with a valid user token</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Displays only the current user</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/token/login/</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Anyone with a valid username and password</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Anyone with a valid username and password</Td>
                             <Td fontSize={["xs", "sm"]}>POST</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Generates access tokens that can be used in other API calls in this project</Td>
                         </Tr>
@@ -126,49 +161,49 @@ const OffenEval = () => {
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Customer, delivery crew</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Customer, delivery crew</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">POST, PUT, PATCH, DELETE</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Denies access and returns 403 – Unauthorized HTTP status code</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items/{"{menuItem}"}</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Customer, delivery crew</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Customer, delivery crew</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Lists single menu item</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items/{"{menuItem}"}</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Customer, delivery crew</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" >Customer, delivery crew</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">POST, PUT, PATCH, DELETE</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Returns 403 - Unauthorized</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Manager</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Manager</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Lists all menu items</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Manager</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Manager</Td>
                             <Td fontSize={["xs", "sm"]}>POST</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Creates a new menu item and returns 201 - Created</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items/{"{menuItem}"}</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Manager</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Manager</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Lists single menu item</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items/{"{menuItem}"}</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Manager</Td>
-                            <Td fontSize={["xs", "sm"]}>PUT, PATCH</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Manager</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">PUT, PATCH</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Updates single menu item</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items/{"{menuItem}"}</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Manager</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Manager</Td>
                             <Td fontSize={["xs", "sm"]}>DELETE</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Deletes menu item</Td>
                         </Tr>
@@ -193,37 +228,37 @@ const OffenEval = () => {
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/groups/manager/users</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">GET</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Returns all managers</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns all managers</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/groups/manager/users</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">POST</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Assigns the user in the payload to the manager group and returns 201-Created</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Assigns the user in the payload to the manager group and returns 201-Created</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/groups/manager/users/{"{userId}"}</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">DELETE</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Removes this particular user from the manager group and returns 200 – Success if everything is okay. If the user is not found, returns 404 – Not found</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Removes this particular user from the manager group and returns 200 – Success if everything is okay. If the user is not found, returns 404 – Not found</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/groups/delivery-crew/users</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">GET</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Returns all delivery crew</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns all delivery crew</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/groups/delivery-crew/users</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">POST</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Assigns the user in the payload to the delivery crew group and returns 201-Created</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Assigns the user in the payload to the delivery crew group and returns 201-Created</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/groups/delivery-crew/users/{"{userId}"}</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">DELETE</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Removes this user from the manager group and returns 200 – Success if everything is okay. If the user is not found, returns 404 – Not found</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Removes this user from the manager group and returns 200 – Success if everything is okay. If the user is not found, returns 404 – Not found</Td>
                         </Tr>
                         </Tbody>
                     </Table>
@@ -281,31 +316,31 @@ const OffenEval = () => {
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders</Td>
                             <Td fontSize={["xs", "sm"]}>Customer</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Returns all orders with order items created by this user</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns all orders with order items created by this user</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders</Td>
                             <Td fontSize={["xs", "sm"]}>Customer</Td>
                             <Td fontSize={["xs", "sm"]}>POST</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Creates a new order item for the current user. Gets current cart items from the cart endpoints and adds those items to the order items table. Then deletes all items from the cart for this user.</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Creates a new order item for the current user. Gets current cart items from the cart endpoints and adds those items to the order items table. Then deletes all items from the cart for this user.</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders/{'{'}orderId{'}'}</Td>
                             <Td fontSize={["xs", "sm"]}>Customer</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Returns all items for this order id. If the order ID doesn’t belong to the current user, it displays an appropriate HTTP error status code.</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns all items for this order id. If the order ID doesn’t belong to the current user, it displays an appropriate HTTP error status code.</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Returns all orders with order items by all users</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns all orders with order items by all users</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders/{'{'}orderId{'}'}</Td>
                             <Td fontSize={["xs", "sm"]}>Customer</Td>
-                            <Td fontSize={["xs", "sm"]}>PUT, PATCH</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Updates the order. A manager can use this endpoint to set a delivery crew to this order, and also update the order status to 0 or 1.</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">PUT, PATCH</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Updates the order. A manager can use this endpoint to set a delivery crew to this order, and also update the order status to 0 or 1.</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders/{'{'}orderId{'}'}</Td>
@@ -315,22 +350,27 @@ const OffenEval = () => {
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders</Td>
-                            <Td fontSize={["xs", "sm"]}>Delivery crew</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Delivery crew</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Returns all orders with order items assigned to the delivery crew</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns all orders with order items assigned to the delivery crew</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders/{'{'}orderId{'}'}</Td>
-                            <Td fontSize={["xs", "sm"]}>Delivery crew</Td>
-                            <Td fontSize={["xs", "sm"]}>PATCH</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">A delivery crew can use this endpoint to update the order status to 0 or 1. The delivery crew will not be able to update anything else in this order.</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Delivery crew</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">PATCH</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">A delivery crew can use this endpoint to update the order status to 0 or 1. The delivery crew will not be able to update anything else in this order.</Td>
                         </Tr>
                         </Tbody>
                     </Table>
                 </TableContainer>
 
                 <Heading size="sm">Comment</Heading>
-                
+                    <HStack w="100%">
+                    <Text py={2}>
+                        The project has been peer reviewed:
+                    </Text>
+                    <PeerReviewModal />
+                    </HStack>
                 </Box>
               </CardBody>
             </Collapse>
