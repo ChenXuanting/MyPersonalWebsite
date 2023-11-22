@@ -39,6 +39,7 @@ const ContactMeSection = () => {
     },
     onSubmit: async (values) => {
       setIsSending(true);
+      console.log(values)
       try {
         const response = await axios.post('/api/send-email', values);
         onOpen('success', 'Message sent successfully!');
