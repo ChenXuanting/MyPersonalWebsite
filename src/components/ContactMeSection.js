@@ -32,6 +32,7 @@ const ContactMeSection = () => {
   const formik = useFormik({
     initialValues: {
       firstName: '',
+      lastName: '',
       email: '',
       type: '',
       comment: ''
