@@ -44,10 +44,10 @@ const ContactMeSection = () => {
       setIsSending(true);
       try {
         const response = await axios.post('/api/send-email', values);
-        onOpen('success', 'Message sent successfully!');
+        onOpen('success', `Thanks for your submission ${values.firstName}, I will get back to you shortly!`);
         formik.resetForm();
       } catch (error) {
-        onOpen('error', 'Failed to send message.');
+        onOpen('error', 'Something went wrong, please try again later!');
       } finally {
         setIsSending(false); // Stop loading
       }
@@ -141,7 +141,7 @@ const ContactMeSection = () => {
           flex="4"
           display="flex"
           alignItems="center"
-          justifyContent={{md:"center", lg: "flex-start"}}
+          justifyContent={{md:"center", lg:"center", xl: "flex-start"}}
         >
           <VStack
             alignItems="center"

@@ -5,7 +5,7 @@ import {
   faGithub,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { Box, HStack, Tooltip } from "@chakra-ui/react";
+import { Box, HStack, Tooltip, useToast } from "@chakra-ui/react";
 
 const socials = [
   {
@@ -25,9 +25,24 @@ const socials = [
   },
 ];
 
-const Header = () => {
+const Header = (props) => {
 
-  const handleClick = (anchor) => () => {
+  const toast = useToast()
+
+  const handleClick = (anchor) => (e) => {
+    if (!props.scrollingEnabled) {
+      e.preventDefault();
+      toast({
+        title: "Please wait.",
+        description: "Scorlling is disabled when the portrait is not revealed.",
+        status: "info",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+      return;
+    }
+
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
     if (element) {

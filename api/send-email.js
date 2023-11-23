@@ -52,6 +52,6 @@ export default async (req, res) => {
 
     res.status(200).json({ status: "OK", message: "Email sent successfully" });
   } catch (error) {
-    res.status(500).json({ status: "ERROR", message: "Failed to send email" });
+    res.status(500).json({ status: "ERROR", message: "Failed to send email." });
   }
 };

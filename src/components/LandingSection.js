@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { VStack, useBreakpointValue } from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
 import portrait from "../images/portrait.jpg"
+import portraitMobile from "../images/portraitMobile.jpg"
 import TypingEffect from "./TypingEffect";
 import '../css/LandingSection.css';
 
-const LandingSection = () => {
+const LandingSection = (props) => {
   const [circleSize, setCircleSize] = useState(0);
   const [typingFinished, setTypingFinished] = useState(false);
   const isBase = useBreakpointValue({ base: true, md: false });
@@ -48,6 +49,7 @@ const LandingSection = () => {
       if (circleSize === 100) {
         document.body.style.overflowY = "auto";
         window.removeEventListener('wheel', handleScroll);
+        props.setScrollingEnabled(true);
       }
     };
 
@@ -71,7 +73,7 @@ const LandingSection = () => {
     zIndex="0"
   >
     <img
-      src={portrait}
+      src={isBase? portraitMobile : portrait}
       alt="Portrait"
       id="portraitDiv"
       style={{
@@ -79,7 +81,7 @@ const LandingSection = () => {
         animation: typingFinished && isBase ? 'revealCircle 3s forwards' : undefined, // Apply the animation if typing is finished and on mobile
       }}
     />
-    {circleSize >= 50 && <div className="text-overlay">
+    {circleSize >= 50 && <div className="text-overlay" style= {{top: isBase? "75%" : "65%", left: isBase? "78%" : "68%"}}>
         <h1>Xuanting Chen</h1>
         <p>Data Scientist | Full-stack developer</p>
     </div>}

@@ -13,8 +13,6 @@
 
 .text-overlay {
     position: absolute;
-    top: 65%;
-    left: 68%;
     transform: translate(-50%, -50%);
     color: black;
     text-align: center;
@@ -35,10 +33,10 @@
 
 @media (max-width: 768px) {
   .text-overlay h1 {
-      font-size: 2.4rem;
+      font-size: 2rem;
   }
 
   .text-overlay p {
-      font-size: 1.2rem;
+      font-size: 1rem;
   }
 }
