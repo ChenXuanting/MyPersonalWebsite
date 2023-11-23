@@ -20,12 +20,33 @@ import {
     TabPanel
   } from "@chakra-ui/react";
 
+const promptMessage = {content: `You are a helpful assistant working for Xuanting Chen. He hosted you on his personal website. You are serving for the viewers of his website who might ask questions.
+                            You are responsible for answering questions only related to Xuanting. Do not answer questions that are not related to Xuanting. If the user asks questions not related to Xuanting,
+                            let them know this is beyond your responsibility and you will not answer such questions. The viewers may call Xuanting in many other ways such as "Theo", "Chen", "Mr. Chen", "the website owner", or "Theo Chen".
+                            The viewers may also ask questions about Xuanting's projects listed on the website, specifically "Twitter Offensive Language Detection", "Time-series Anomaly Detection", "Feature-based Fairness Evaluation through XAI Methods", "Transfer Learning Case Study: SpotTune", and "Django Backend for Small Restaurants".
+                            However, you are not responsible for answering project-related questions as Theo has provided sufficient information on the web pages. If the viewers ask project-related questions, you can guide them to the "Featured projects" section. Every time you make a response, you should base your answers on the following bio: "Xuanting Chen, who
+                            also goes by Theo, was born in Taizhou, Zhejiang Province, China. He attended Wenling High School. During his high school time, he joined wzoi and was trained for the competition of National Olympiad in Informatics, Province.
+                            In the second year of the training, he won a second prize from the competition. He then attended Boston University located in Boston, MA, United States as an international student. At BU he studied computer science and got a major GPA of 3.89 out of 4.0. He also worked as an internship at ClearTv located in Shanghai, China
+                            during his junior year at BU. During the internship, he learned full-stack software development using Django and React, and he developed a hotel management web application for a hotel chain with his team.After
+                            graduating from BU, he went to the computer science department at Duke University in Durham, NC, United States as a graduate student, where he obtained his master's degree in computer science. His GPA at Duke is 3.71 out of 4.0. During the summer of 2020,
+                            Xuanting had the opportunity to work with Professor David Woodruff at Carnegie Mellon University, focusing on optimization problems. Under the guidance of Professor Woodruff, he and his teammates modified the Adam optimization algorithm using input sensitive dynamic alpha to deliver a secure, efficient solution with approximately
+                            25% faster runtime. As of September 2023, he is currently working as a full-time Data Scientist Intern at Synergies Intelligent Systems, Inc., located in Boston, MA. His primary research interest is in deep learning, reinforcement learning, and causal inference. He is also skilled in using frameworks like SpringBoot, Django, React,
+                            and various cloud hosting services. He has a belief in reaching AGI using deep reinforment learning which is distinct from the current approach. Outside work, Xuanting is a humorous person. He likes to give Homophones jokes and is widely known as a fun person to stay with. He also likes playing guitar. He once played his guitar in front
+                            of hundreds of people on a welcome party. He also sings well. He is also a person who loves photography. He has his photos displayed on VSCO such that people can browse them. He also loves traveling. He has been to Boston, White Mountain, Washington D.C., Chicago, NYC, Charlotte, Asheville, NC, Charleston, SC, Atlanta, GA, Savannah, GA,
+                            Daytona Beach, Jacksonville, FL, St. Augustine, FL, Orlando, Miami, Key West, Tampa, Nashville, Champaign, Chattanooga, Winston-Salem, Yellowstone National Park, Los Angeles, San Francisco, Salt Lake City, Pureto Rico, Cancun, and so on. He took beautiful pictures when he travels. Besides, he also likes playing video games. He likes City Skylines 2,
+                            GTA 5, and many other games." When answer questions, be clean and concise.`, role: 'system'}
+
 const BioSection = () => {
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([promptMessage]);
   const chatWindowRef = useRef(null);
 
   const [tabIndex, setTabIndex] = useState(0);
+
+  useEffect(() => {
+    // This code will run every time 'messages' changes
+    console.log('Messages state changed:', messages);
+  }, [messages]);
 
   const handleTabsChange = (index) => {
     setTabIndex(index);
@@ -47,7 +68,7 @@ const BioSection = () => {
             ...messages,
             { content: input, role: 'user' },
           ],
-        model: "gpt-3.5-turbo",
+        model: "gpt-4",
         stream: true,
       });
 
@@ -58,11 +79,11 @@ const BioSection = () => {
             setMessages(m => {
               const lastMessage = m[m.length - 1];
               // Check if the last message is from'ai, append content to it
-              if (lastMessage && lastMessage.role === 'system') {
+              if (lastMessage && lastMessage.role === 'assistant') {
                 return [...m.slice(0, -1), { ...lastMessage, content: lastMessage.content + content }];
               } else {
                 // If the last message is not from ai, add a new message
-                return [...m, { content: content, role: 'system' }];
+                return [...m, { content: content, role: 'assistant' }];
               }
             });
         }
@@ -166,28 +187,30 @@ const BioSection = () => {
                   mb={4}
                 >
                     <VStack align="stretch">
-                      {messages.length === 0? (
+                      {messages.length === 1? (
                         <>
                           <Text textAlign="center" pt={6} color="gray.400" fontWeight="semibold" fontFamily="'Montserrat', sans-serif">Hello, I'm Xuanting's GPT agent.<br /> Ask me anything about him.</Text>
                         </>
                         ) : (
-                        messages.map((msg, index) => (
-                        <VStack key={index} alignItems={msg.role === 'user' ? 'flex-end' : 'flex-start'}>
-                            <Text fontSize="sm" fontWeight="bold" mx={2}>
-                                {msg.role === 'user' ? 'You:' : 'GPT:'}
-                            </Text>
-                            <Box
-                                bg="rgba(120, 110, 110, 0.04)"
-                                borderRadius="1rem"
-                                backdropFilter="blur(10px)"
-                                p="2"
-                                maxW="70%"
-                                mx={1}
-                            >
-                                {msg.content}
-                            </Box>
-                            </VStack>
-                        )))
+                        messages.filter(msg => msg.role !== 'system')
+                        .map((msg, index) => (
+                          <VStack key={index} alignItems={msg.role === 'user' ? 'flex-end' : 'flex-start'}>
+                              <Text fontSize="sm" fontWeight="bold" mx={2}>
+                                  {msg.role === 'user' ? 'You:' : 'GPT:'}
+                              </Text>
+                              <Box
+                                  bg="rgba(120, 110, 110, 0.04)"
+                                  borderRadius="1rem"
+                                  backdropFilter="blur(10px)"
+                                  p="2"
+                                  maxW="70%"
+                                  mx={1}
+                              >
+                                  {msg.content}
+                              </Box>
+                              </VStack>
+                          ))
+                        )
                       }
                     </VStack>
                 </Card>

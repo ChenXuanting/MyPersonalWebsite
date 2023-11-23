@@ -375,7 +375,7 @@ const OffenEval = () => {
               </CardBody>
             </Collapse>
             <CardFooter pt={0} gap={4} display='flex' alignContent='center' justifyContent='center'>
-              <Heading display='flex' flexDirection='column' alignContent='center' justifyContent='center' size='xs'>Sep 2023</Heading>
+              <Heading display='flex' flexDirection='column' alignContent='center' justifyContent='center' size='xs'>Jul 2023</Heading>
               <Button
                 variant="solid"
                 colorScheme="blue"

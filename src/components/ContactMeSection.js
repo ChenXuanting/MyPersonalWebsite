@@ -17,12 +17,15 @@ import {
   Link,
   Text,
   Card,
+  Flex,
 } from "@chakra-ui/react";
 import * as Yup from 'yup';
 import FullScreenSection from "./FullScreenSection";
 import {useAlertContext} from "../context/alertContext";
-import reactLogo from "../images/React-icon.svg";
+import reactLogo from "../images/reactjs-logo.svg";
 import chakraLogo from "../images/chakra-logo.svg"
+import vercelLogo from "../images/vercel-logo.svg"
+import openaiLogo from "../images/OpenAI-Logo.svg"
 
 const ContactMeSection = () => {
   const { onOpen } = useAlertContext();
@@ -136,34 +139,52 @@ const ContactMeSection = () => {
         </VStack>
         <Box
           flex="4"
+          display="flex"
           alignItems="center"
-          justifyItems="center"
+          justifyContent={{md:"center", lg: "flex-start"}}
         >
           <VStack
             alignItems="center"
             justifyItems="center"
-            w="60%"
+            w="300px"
             py={4}
           >
             <Heading style={{fontFamily: "'Montserrat', sans-serif" }}>
               Powered by
             </Heading>
-            <VStack alignItems="center" justifyItems="center" py={{ base: 10, sm: 30 }} spacing={4}>
-              <HStack>
-                <Image src={reactLogo} alt='react-logo' width="100%" boxSize={{ base: '90px', sm: '60px', md:'60px', lg:'80px' }}/>
-                <Text fontSize={{ base: '5xl', sm: '5xl' }} fontWeight="bold" fontFamily="Optimistic Display,-apple-system,ui-sans-serif,system-ui,BlinkMacSystemFont,Segoe UI,
-                                  Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,
-                                  Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji">
-                  React
-                </Text>
-              </HStack>
+            <VStack alignItems="center" justifyItems="center" py={{ base: 10, sm: 30 }} spacing={2}>
+              <HStack spacing={4}>
+              <Link
+                  href="https://react.dev/"
+                  aria-label="React Home"
+                  isExternal
+                >
+                <Image src={reactLogo} alt='react-logo' width="320px" h="80px"/>
+              </Link>
               <Link
                   href="https://chakra-ui.com/"
                   aria-label="Chakra UI Home"
-                  mx={10}
+                  isExternal
                 >
-                <Image src={chakraLogo} alt='chakra-logo' width="300px"/>
+                <Image src={chakraLogo} alt='chakra-logo' width="300px" h="100px"/>
               </Link>
+              </HStack>
+              <HStack spacing={4}>
+              <Link
+                  href="https://vercel.com/"
+                  aria-label="Vercel Home"
+                  isExternal
+                >
+                <Image src={vercelLogo} alt='vercel-logo' width="300px" h="100px"/>
+              </Link>
+              <Link
+                  href="https://openai.com/"
+                  aria-label="OpenAI Home"
+                  isExternal
+                >
+                <Image src={openaiLogo} alt='openai-logo' width="300px" h="100px"/>
+              </Link>
+              </HStack>
             </VStack>
           </VStack>
         </Box>
