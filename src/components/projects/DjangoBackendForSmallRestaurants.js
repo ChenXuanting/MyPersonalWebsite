@@ -107,7 +107,7 @@ const OffenEval = () => {
                     User registration and token generation:
                 </Text>
                 <TableContainer w="100%">
-                    <Table size='sm'>
+                    <Table size={['xs','sm']}>
                         <Thead>
                         <Tr>
                             <Th fontSize={["xs", "sm"]}>Endpoint</Th>
@@ -121,19 +121,19 @@ const OffenEval = () => {
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/users</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">No role required</Td>
                             <Td fontSize={["xs", "sm"]}>POST</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Creates a new user with name, email and password</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Creates a new user with name, email and password</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/users/users/me/</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Anyone with a valid user token</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Displays only the current user</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Displays only the current user</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/token/login/</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Anyone with a valid username and password</Td>
                             <Td fontSize={["xs", "sm"]}>POST</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Generates access tokens that can be used in other API calls in this project</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Generates access tokens that can be used in other API calls in this project</Td>
                         </Tr>
                         </Tbody>
                     </Table>
@@ -142,7 +142,7 @@ const OffenEval = () => {
                     Menu-items endpoints:
                 </Text>
                 <TableContainer w="100%" overflowX="auto">
-                    <Table size='sm'>
+                    <Table size={['xs','sm']}>
                         <Thead>
                         <Tr>
                             <Th fontSize={["xs", "sm"]}>Endpoint</Th>
@@ -154,57 +154,57 @@ const OffenEval = () => {
                         <Tbody>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Customer, delivery crew</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Customer, delivery crew</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Lists all menu items. Return a 200 – Ok HTTP status code</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Lists all menu items. Return a 200 – Ok HTTP status code</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Customer, delivery crew</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">POST, PUT, PATCH, DELETE</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Denies access and returns 403 – Unauthorized HTTP status code</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">POST, PUT, PATCH, DELETE</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Denies access and returns 403 – Unauthorized HTTP status code</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items/{"{menuItem}"}</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Customer, delivery crew</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Lists single menu item</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Lists single menu item</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items/{"{menuItem}"}</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" >Customer, delivery crew</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">POST, PUT, PATCH, DELETE</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Returns 403 - Unauthorized</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">POST, PUT, PATCH, DELETE</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns 403 - Unauthorized</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Manager</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Lists all menu items</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Lists all menu items</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Manager</Td>
                             <Td fontSize={["xs", "sm"]}>POST</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Creates a new menu item and returns 201 - Created</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Creates a new menu item and returns 201 - Created</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items/{"{menuItem}"}</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Manager</Td>
                             <Td fontSize={["xs", "sm"]}>GET</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Lists single menu item</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Lists single menu item</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items/{"{menuItem}"}</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Manager</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">PUT, PATCH</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Updates single menu item</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">PUT, PATCH</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Updates single menu item</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/menu-items/{"{menuItem}"}</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Manager</Td>
                             <Td fontSize={["xs", "sm"]}>DELETE</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Deletes menu item</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Deletes menu item</Td>
                         </Tr>
                         </Tbody>
                     </Table>
@@ -213,7 +213,7 @@ const OffenEval = () => {
                   User group management endpoints:
                 </Text>
                 <TableContainer w="100%" overflowX="auto">
-                    <Table size='sm'>
+                    <Table size={['xs','sm']}>
                         <Thead>
                         <Tr>
                             <Th fontSize={["xs", "sm"]}>Endpoint</Th>
@@ -226,37 +226,37 @@ const OffenEval = () => {
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/groups/manager/users</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">GET</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">GET</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns all managers</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/groups/manager/users</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">POST</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">POST</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Assigns the user in the payload to the manager group and returns 201-Created</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/groups/manager/users/{"{userId}"}</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">DELETE</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">DELETE</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Removes this particular user from the manager group and returns 200 – Success if everything is okay. If the user is not found, returns 404 – Not found</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/groups/delivery-crew/users</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">GET</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">GET</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns all delivery crew</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/groups/delivery-crew/users</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">POST</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">POST</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Assigns the user in the payload to the delivery crew group and returns 201-Created</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/groups/delivery-crew/users/{"{userId}"}</Td>
                             <Td fontSize={["xs", "sm"]}>Manager</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">DELETE</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">DELETE</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Removes this user from the manager group and returns 200 – Success if everything is okay. If the user is not found, returns 404 – Not found</Td>
                         </Tr>
                         </Tbody>
@@ -266,33 +266,33 @@ const OffenEval = () => {
                   Cart management endpoints:
                 </Text>
                 <TableContainer w="100%" overflowX="auto">
-                    <Table size='sm'>
+                    <Table size={['xs','sm']}>
                         <Thead>
                         <Tr>
-                            <Th fontSize={["xs", "sm"]}>Endpoint</Th>
-                            <Th fontSize={["xs", "sm"]}>Role</Th>
-                            <Th fontSize={["xs", "sm"]}>Method</Th>
-                            <Th fontSize={["xs", "sm"]}>Purpose</Th>
+                            <Th fontSize={["xs", "sm"]} whiteSpace="normal">Endpoint</Th>
+                            <Th fontSize={["xs", "sm"]} whiteSpace="normal">Role</Th>
+                            <Th fontSize={["xs", "sm"]} whiteSpace="normal">Method</Th>
+                            <Th fontSize={["xs", "sm"]} whiteSpace="normal">Purpose</Th>
                         </Tr>
                         </Thead>
                         <Tbody>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/cart/menu-items</Td>
-                            <Td fontSize={["xs", "sm"]}>Customer</Td>
-                            <Td fontSize={["xs", "sm"]}>GET</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Returns current items in the cart for the current user token</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Customer</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">GET</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns current items in the cart for the current user token</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/cart/menu-items</Td>
-                            <Td fontSize={["xs", "sm"]}>Customer</Td>
-                            <Td fontSize={["xs", "sm"]}>POST</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Adds the menu item to the cart. Sets the authenticated user as the user id for these cart items</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Customer</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">POST</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Adds the menu item to the cart. Sets the authenticated user as the user id for these cart items</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/cart/menu-items</Td>
-                            <Td fontSize={["xs", "sm"]}>Customer</Td>
-                            <Td fontSize={["xs", "sm"]}>DELETE</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Deletes all menu items created by the current user token</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Customer</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">DELETE</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Deletes all menu items created by the current user token</Td>
                         </Tr>
                         </Tbody>
                     </Table>
@@ -301,62 +301,62 @@ const OffenEval = () => {
                   Order management endpoints:
                 </Text>
                 <TableContainer w="100%" overflowX="auto">
-                    <Table size='sm'>
+                    <Table size={['xs', 'sm']}>
                         <Thead>
                         <Tr>
-                            <Th fontSize={["xs", "sm"]}>Endpoint</Th>
-                            <Th fontSize={["xs", "sm"]}>Role</Th>
-                            <Th fontSize={["xs", "sm"]}>Method</Th>
-                            <Th fontSize={["xs", "sm"]}>Purpose</Th>
+                            <Th fontSize={["xs", "sm"]} whiteSpace="normal">Endpoint</Th>
+                            <Th fontSize={["xs", "sm"]} whiteSpace="normal">Role</Th>
+                            <Th fontSize={["xs", "sm"]} whiteSpace="normal">Method</Th>
+                            <Th fontSize={["xs", "sm"]} whiteSpace="normal">Purpose</Th>
                         </Tr>
                         </Thead>
                         <Tbody>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders</Td>
-                            <Td fontSize={["xs", "sm"]}>Customer</Td>
-                            <Td fontSize={["xs", "sm"]}>GET</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Customer</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">GET</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns all orders with order items created by this user</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders</Td>
-                            <Td fontSize={["xs", "sm"]}>Customer</Td>
-                            <Td fontSize={["xs", "sm"]}>POST</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Customer</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">POST</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Creates a new order item for the current user. Gets current cart items from the cart endpoints and adds those items to the order items table. Then deletes all items from the cart for this user.</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders/{'{'}orderId{'}'}</Td>
-                            <Td fontSize={["xs", "sm"]}>Customer</Td>
-                            <Td fontSize={["xs", "sm"]}>GET</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Customer</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">GET</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns all items for this order id. If the order ID doesn’t belong to the current user, it displays an appropriate HTTP error status code.</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders</Td>
-                            <Td fontSize={["xs", "sm"]}>Manager</Td>
-                            <Td fontSize={["xs", "sm"]}>GET</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Manager</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">GET</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns all orders with order items by all users</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders/{'{'}orderId{'}'}</Td>
-                            <Td fontSize={["xs", "sm"]}>Customer</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">PUT, PATCH</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Customer</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">PUT, PATCH</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Updates the order. A manager can use this endpoint to set a delivery crew to this order, and also update the order status to 0 or 1.</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders/{'{'}orderId{'}'}</Td>
-                            <Td fontSize={["xs", "sm"]}>Manager</Td>
-                            <Td fontSize={["xs", "sm"]}>DELETE</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Deletes this order</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Manager</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">DELETE</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Deletes this order</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Delivery crew</Td>
-                            <Td fontSize={["xs", "sm"]}>GET</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Delivery crew</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">GET</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">Returns all orders with order items assigned to the delivery crew</Td>
                         </Tr>
                         <Tr>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">/api/orders/{'{'}orderId{'}'}</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">Delivery crew</Td>
-                            <Td fontSize={["xs", "sm"]} whiteSpace="normal" wordBreak="break-word">PATCH</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">Delivery crew</Td>
+                            <Td fontSize={["xs", "sm"]} whiteSpace="normal">PATCH</Td>
                             <Td fontSize={["xs", "sm"]} whiteSpace="normal">A delivery crew can use this endpoint to update the order status to 0 or 1. The delivery crew will not be able to update anything else in this order.</Td>
                         </Tr>
                         </Tbody>

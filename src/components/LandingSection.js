@@ -10,6 +10,13 @@ const LandingSection = (props) => {
   const [circleSize, setCircleSize] = useState(0);
   const [typingFinished, setTypingFinished] = useState(false);
   const isBase = useBreakpointValue({ base: true, md: false });
+  const hasTouchScreen = () => {
+    return (
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(hover: none)").matches
+    );
+  };
 
   const texts = [
     "Hello, I am Theo! ",
@@ -33,10 +40,11 @@ const LandingSection = (props) => {
         return;
       }
 
-      if (isBase) {
+      if (hasTouchScreen()) {
         setCircleSize(100);
         document.body.style.overflowY = "auto";
         window.removeEventListener('touchmove', handleScroll);
+        props.setScrollingEnabled(true);
         return
       }
 
@@ -78,7 +86,7 @@ const LandingSection = (props) => {
       id="portraitDiv"
       style={{
         clipPath: `circle(${circleSize}% at 50% 100%)`, // Use clipPath for the reveal effect
-        animation: typingFinished && isBase ? 'revealCircle 3s forwards' : undefined, // Apply the animation if typing is finished and on mobile
+        animation: typingFinished && hasTouchScreen() ? 'revealCircle 4s forwards' : undefined, // Apply the animation if typing is finished and on mobile
       }}
     />
     {circleSize >= 50 && <div className="text-overlay" style= {{top: isBase? "75%" : "65%", left: isBase? "78%" : "68%"}}>

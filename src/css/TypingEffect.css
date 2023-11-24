@@ -39,10 +39,20 @@
 
 @media (max-width: 768px) {
     .typing {
-        font-size: 2rem;
+        font-size: 1.7rem;
     }
 
     .typed {
         font-size: 1.5rem;
     }
   }
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .typing {
+        font-size: 3.5rem; /* Size for iPad screens */
+    }
+
+    .typed {
+        font-size: 3rem; /* Size for iPad screens */
+    }
+}
