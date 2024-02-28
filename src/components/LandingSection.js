@@ -42,10 +42,10 @@ const LandingSection = (props) => {
 
       if (hasTouchScreen()) {
         setCircleSize(100);
-        document.body.style.overflowY = "auto";
+        document.documentElement.style.overflowY = "scroll"; // Enable scrolling on the html element
         window.removeEventListener('touchmove', handleScroll);
         props.setScrollingEnabled(true);
-        return
+        return;
       }
 
       // Adjust the circle size based on the scroll
@@ -55,21 +55,26 @@ const LandingSection = (props) => {
       });
 
       if (circleSize === 100) {
-        document.body.style.overflowY = "auto";
+        document.documentElement.style.overflowY = "scroll";
         window.removeEventListener('wheel', handleScroll);
         props.setScrollingEnabled(true);
       }
     };
 
-    document.body.style.overflowY = "hidden";
+    if (!typingFinished || circleSize < 100) {
+      document.documentElement.style.overflowY = "hidden"; // Disable scrolling on the html element
+    } else {
+      document.documentElement.style.overflowY = "scroll"; // Enable scrolling on the html element
+    }
     window.addEventListener('wheel', handleScroll, { passive: false });
     window.addEventListener('touchmove', handleScroll, { passive: false });
 
     return () => {
       window.removeEventListener('wheel', handleScroll);
       window.removeEventListener('touchmove', handleScroll);
+      document.documentElement.style.overflowY = "scroll";
     };
-  }, [circleSize, typingFinished]);
+  }, [circleSize, typingFinished, hasTouchScreen, props]);
 
   return (
   <FullScreenSection

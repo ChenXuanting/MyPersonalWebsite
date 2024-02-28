@@ -57,22 +57,22 @@ const Header = (props) => {
     <Box
       position="fixed"
       top={0}
-      left="50%"
-      transform="translateX(-50%)"
+      left="50%" // Center the left side of the Box at 50% of the viewport
+      transform="translateX(-50%)" // Shift the Box left by 50% of its own width to center it
       backgroundColor="white"
-      borderBottom="1px" // Sets the border width
-      borderColor="gray.100" // Sets the border color
-      width = "100%"
-      maxWidth="1504px"
+      borderBottom="1px"
+      borderColor="gray.100"
+      maxWidth="1504px" // Maximum width of the nav bar
+      width="100%" // Allow the Box to shrink to fit its content up to maxWidth
       zIndex={1000}
     >
-      <Box color="black" maxWidth="95%" margin="0 auto">
-        <HStack
-          px={{ base: 4, md: 16}}
-          py={4}
-          justifyContent="space-between"
-          alignItems="center"
-        >
+      <HStack
+        px={{ base: 4, md: 16 }}
+        py={4}
+        justifyContent="space-between"
+        alignItems="center"
+        width="100%"
+      >
           <nav>
             {/* Add social media links based on the `socials` data */}
             <HStack>
@@ -94,7 +94,7 @@ const Header = (props) => {
             </HStack>
           </nav>
         </HStack>
-      </Box>
+      {/* </Box> */}
     </Box>
   );
 };

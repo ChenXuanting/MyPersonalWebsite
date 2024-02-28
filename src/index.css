@@ -1,52 +1,37 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden; /* hide horizontal scrollbar */
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f5f5f5; /* thumb and track color */
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-}
-
+/* Always include space for the scrollbar to prevent layout shifts */
 html {
   background-color: #18181b;
-  width: 100vw;
+  width: 100%;
+  overflow-y: scroll; /* Ensure scrollbar space is always accounted for */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-/* This styles the scrollbar track */
+/* Style the scrollbar to be transparent by default */
 ::-webkit-scrollbar {
-  width: 10px; /* for vertical scrollbars */
-  height: 10px; /* for horizontal scrollbars */
+  width: 10px; /* Adjust the width as needed */
 }
 
-/* This styles the thumb */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Make the track transparent */
+}
+
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2); /* semi-transparent black */
-  border-radius: 5px;
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Rounded corners on the scrollbar thumb */
 }
 
-/* This styles the thumb when it's active or being hovered */
-::-webkit-scrollbar-thumb:active,
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.4); /* more opaque when active/hovered */
+/* Style the scrollbar to be visible when hovered or active */
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+  background: #555;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-body {
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
+/* For other browsers like Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;  /* Make scrollbar transparent by default */
 }
 
-/* For other non-webkit browsers, there's no perfect solution,
-but you can hide the scrollbar */
+/* Hide scrollbar for other non-webkit browsers (as a fallback) */
 body::-webkit-scrollbar {
   display: none;
 }
