@@ -17,6 +17,7 @@ You can visit the website at: [https://www.xuantingchen.com/](https://www.xuanti
 Below is a demo video of the website:
 
 ![Demo Video](video/Recording.mp4)
+<video src="https://github.com/ChenXuanting/MyPersonalWebsite/tree/main/video/Recording.mp4" width="500" />
 
 ## Contact
 
