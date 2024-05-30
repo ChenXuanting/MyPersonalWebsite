@@ -96,7 +96,7 @@ const LandingSection = (props) => {
     />
     {circleSize >= 50 && <div className="text-overlay" style= {{top: isBase? "75%" : "65%", left: isBase? "78%" : "68%"}}>
         <h1>Xuanting Chen</h1>
-        <p>Data Scientist | Full-stack developer</p>
+        <p>Data Scientist | Software developer</p>
     </div>}
     <VStack
       spacing={5}

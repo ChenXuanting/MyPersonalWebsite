@@ -12,46 +12,36 @@ import {
     Card,
     Stack,
     Heading,
-    Tabs,
-    TabList,
-    Tab,
-    TabIndicator,
-    TabPanels,
-    TabPanel
   } from "@chakra-ui/react";
 
-const promptMessage = {content: `You are a helpful assistant working for Xuanting Chen. He hosted you on his personal website. You are serving for the viewers of his website who might ask questions.
+const promptMessage = {content: `You are a helpful assistant working for Xuanting Chen. He hosted you on his personal website. You are serving for the viewers of his website who might ask questions about him.
                             You are responsible for answering questions only related to Xuanting. Do not answer questions that are not related to Xuanting. If the user asks questions not related to Xuanting,
                             let them know this is beyond your responsibility and you will not answer such questions. The viewers may call Xuanting in many other ways such as "Theo", "Chen", "Mr. Chen", "the website owner", or "Theo Chen".
-                            The viewers may also ask questions about Xuanting's projects listed on the website, specifically "Twitter Offensive Language Detection", "Time-series Anomaly Detection", "Feature-based Fairness Evaluation through XAI Methods", "Transfer Learning Case Study: SpotTune", and "Django Backend for Small Restaurants".
-                            However, you are not responsible for answering project-related questions as Theo has provided sufficient information on the web pages. If the viewers ask project-related questions, you can guide them to the "Featured projects" section where there are 'show detail' buttons. When they did not
-                            ask about the projects, do not mention the project section. Every time you make a response, you should base your answers on the following bio: "Xuanting Chen, who
+                            The viewers may also ask questions about Xuanting's projects listed on the website, specifically "Deep Learning Recommendation System", "Twitter Offensive Language Detection", "Time-series Anomaly Detection", "Feature-based Fairness Evaluation through XAI Methods", "Transfer Learning Case Study: SpotTune", and "Django Backend for Small Restaurants".
+                            However, you are not responsible for answering project-related questions as Theo has provided sufficient information on the web pages. If the viewers ask project-related questions, you can guide them to the "Featured projects" section where project details are showed. When they did not
+                            ask about the projects, do not mention the project section. Here's more information about: "Xuanting Chen, who
                             also goes by Theo, was born in Taizhou, Zhejiang Province, China. He attended Wenling High School. During his high school time, he joined wzoi and was trained for the competition of National Olympiad in Informatics, Province.
                             In the second year of the training, he won a second prize from the competition. He then attended Boston University located in Boston, MA, United States as an international student. At BU he studied computer science and got a major GPA of 3.89 out of 4.0. He also worked as an internship at ClearTv located in Shanghai, China
-                            during his junior year at BU. During the internship, he learned full-stack software development using Django and React, and he developed a hotel management web application for a hotel chain with his team.After
-                            graduating from BU, he went to the computer science department at Duke University in Durham, NC, United States as a graduate student, where he obtained his master's degree in computer science. His GPA at Duke is 3.71 out of 4.0. During the summer of 2020,
+                            during his junior year at BU. During the internship, he learned full-stack software development using Spring Boot, Redis and React, and he developed a hospital appointment management web application with his team. After
+                            he graduated from BU, he went to the computer science department at Duke University in Durham, NC, United States as a graduate student, where he obtained his master's degree in computer science. His GPA at Duke is 3.71 out of 4.0. During the summer of 2020,
                             Xuanting had the opportunity to work with Professor David Woodruff at Carnegie Mellon University, focusing on optimization problems. Under the guidance of Professor Woodruff, he and his teammates modified the Adam optimization algorithm using input sensitive dynamic alpha to deliver a secure, efficient solution with approximately
-                            25% faster runtime. As of September 2023, he is currently working as a full-time Data Scientist Intern at Synergies Intelligent Systems, Inc., located in Boston, MA. His primary research interest is in deep learning, reinforcement learning, and causal inference. He is also skilled in using frameworks like SpringBoot, Django, React,
-                            and various cloud hosting services. He has a belief in reaching AGI using deep reinforment learning which is distinct from the current approach. Outside work, Xuanting is a humorous person. He likes to give Homophones jokes and is widely known as a fun person to stay with. He also likes playing guitar. He once played his guitar in front
-                            of hundreds of people on a welcome party. He also sings well. He is also a person who loves photography. He has his photos displayed on VSCO such that people can browse them. He also loves traveling. He has been to Boston, White Mountain, Washington D.C., Chicago, NYC, Charlotte, Asheville, NC, Charleston, SC, Atlanta, GA, Savannah, GA,
+                            25% faster runtime. He also interned as a full-time Data Scientist at Synergies Intelligent Systems, Inc., located in Boston, MA. Other than that, he also interned at Global AI as a Machine Learning Engineer and at HireBeat as a Software Engineer after graduation. His primary research interest is in deep learning, reinforcement learning, and causal inference. He is also skilled in using frameworks like SpringBoot, Django, React, Redis,
+                            and various cloud hosting services such as AWS. He has a belief in reaching AGI using deep reinforment learning which is distinct from the current approach. Outside work, Xuanting is a humorous person. He likes to give Homophones jokes and is widely known as a fun person to stay with. He also likes playing guitar. He once played his guitar in front
+                            of hundreds of people on a welcome party. He also sings well. He is also a person who loves photography. He has a Hasselblad X1D and he's really happy with the camera. He also loves traveling. He has been to Boston, White Mountain, Washington D.C., Chicago, NYC, Charlotte, Asheville, NC, Charleston, SC, Atlanta, GA, Savannah, GA,
                             Daytona Beach, Jacksonville, FL, St. Augustine, FL, Orlando, Miami, Key West, Tampa, Nashville, Champaign, Chattanooga, Winston-Salem, Yellowstone National Park, Los Angeles, San Francisco, Salt Lake City, Pureto Rico, Cancun, and so on. He took beautiful pictures when he travels. Besides, he also likes playing video games. He likes City Skylines 2,
-                            GTA 5, and many other games." When answering questions, be clean and concise. When unnecessary, don't always mention Xuanting is known as Theo.`, role: 'system'}
+                            GTA 5, and many other games." When answering questions, be clean and concise. When unnecessary, don't always mention Xuanting is known as Theo. When talking about his experience, unless specifically asked, do not mention the high school experience.`, role: 'system'}
 
 const BioSection = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([promptMessage]);
   const chatWindowRef = useRef(null);
 
-  const [tabIndex, setTabIndex] = useState(0);
 
   useEffect(() => {
     // This code will run every time 'messages' changes
     console.log('Messages state changed:', messages);
   }, [messages]);
 
-  const handleTabsChange = (index) => {
-    setTabIndex(index);
-  };
 
   const openai = new OpenAI({apiKey: process.env.REACT_APP_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
@@ -69,9 +59,8 @@ const BioSection = () => {
             ...messages,
             { content: input, role: 'user' },
           ],
-        model: "gpt-4-1106-preview",
+        model: "gpt-4o",
         stream: true,
-        max_tokens: 150,
       });
 
       // Handle each chunk of the response
@@ -142,35 +131,12 @@ const BioSection = () => {
           p={4}
           pb={0}
         >
-        <Tabs index={tabIndex} onChange={handleTabsChange} position="relative" variant="unstyled" w="100%">
-          <TabList>
-            <Tab fontFamily="'Montserrat', sans-serif">Bio</Tab>
-            <Tab fontFamily="'Montserrat', sans-serif">My AI assistant</Tab>
-          </TabList>
-          <TabIndicator
-            mt="-1.5px"
-            height="2px"
-            bg="blue.500"
-            borderRadius="1px"
-          />
-          <TabPanels>
-            <TabPanel>
-              <Text fontSize={{ base: 15, md: 18 }} fontFamily="'Montserrat', sans-serif">
-              Hello! My name is Xuanting Chen (陈宣廷), but you can call me Theo. I recently earned my Master of Science in Computer Science from Duke University in Fall 2023,
-              following my Bachelor's degree in the same field from Boston University. During the summer of 2020, I had the opportunity to work with Professor David Woodruff
-              at Carnegie Mellon University, focusing on optimization problems. As of September 2023, I am working as a full-time Data Scientist Intern at Synergies
-              Intelligent Systems, Inc., located in Boston, MA.
+              <Text fontSize={{ base: 15, md: 18 }} pb={4} fontFamily="'Montserrat', sans-serif">
+              Hello! My name is Xuanting Chen, and I go by Theo. I'm a Computer Science major (Duke MSCS, BU BACS) specilizaing in Machine Learning and Software Engineering.
               My primary research interest is in deep learning, reinforcement learning, and causal inference.
-              I am also skilled in using frameworks like SpringBoot, Django, React, and various cloud hosting services.<br />
-              <br />
-              Outside work, I am an optimistic and humble individual who loves photography, music, and video games.
-              If you're interested in learning more about me, feel free to speak with{' '}
-              <Text as='button' onClick={() => setTabIndex(1)} color='blue.500' textDecoration='underline'>
-                my AI Assistant
-              </Text>, who is ready to answer any of your questions!
+              I am also skilled in using frameworks like SpringBoot, Django, React, and cloud hosting services such as AWS.
+              For more information about me, feel free to speak with my AI Assistant right below, who is ready to answer any of your questions.
               </Text>
-            </TabPanel>
-            <TabPanel>
               <Card
               w="100%"
               h={{ base: "450px", md: "300px"}}
@@ -230,9 +196,6 @@ const BioSection = () => {
                     <Button onClick={sendMessage} ml="2" colorScheme="blue">Send</Button>
                 </Flex>
               </Card>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
         </Box>
       </Stack>
     </FullScreenSection>
