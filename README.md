@@ -13,10 +13,8 @@ You can visit the website at: [https://www.xuantingchen.com/](https://www.xuanti
 - **Responsive Design**: The website is designed to be accessible on various devices, including desktops, tablets, and smartphones.
 
 ## Demo
+https://github.com/ChenXuanting/MyPersonalWebsite/assets/47675478/c24a5d3d-bc6c-48ae-8dcb-6a6d7776ab37
 
-Below is a demo video of the website:
-
-<video src="https://github.com/ChenXuanting/MyPersonalWebsite/tree/main/video/Recording.mp4" width="500" />
 
 ## Contact
 
