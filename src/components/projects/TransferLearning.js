@@ -29,10 +29,6 @@ import TransferLearning from '../../images/TransferLearning.png'
 import SpotTuneFigure from '../../images/SpotTuneFigure.png'
 import SpotTuneAccuracy from '../../images/SpotTuneAccuracy.png'
 
-import ADTrainingError from '../../images/ADTrainingError.png'
-import ADTestingError from '../../images/ADTestingError.png'
-import ADOutputSample from '../../images/ADOutputSample.png'
-
 const OffenEval = () => {
     const isBase = useBreakpointValue({ base: true, md: false });
     const { isOpen, onToggle } = useDisclosure();
