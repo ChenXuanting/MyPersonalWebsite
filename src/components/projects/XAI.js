@@ -25,7 +25,7 @@ import Def3Sample from '../../images/XAI-IFSample.png'
 import RacialAdult from '../../images/RacialAdult.png'
 import RacialCOMPAS from '../../images/RacialCOMPAS.png'
 
-const OffenEval = () => {
+const PorjectBody = () => {
     const isBase = useBreakpointValue({ base: true, md: false });
     const { isOpen, onToggle } = useDisclosure();
 
@@ -35,7 +35,7 @@ const OffenEval = () => {
           overflow="hidden"
           variant="elevated"
           my={1}
-          id="project-1"
+          id="project-3"
         >
           <Stack>
             <CardHeader pb={0}>
@@ -170,4 +170,4 @@ const OffenEval = () => {
         )
 }
 
-export default OffenEval;
+export default PorjectBody;

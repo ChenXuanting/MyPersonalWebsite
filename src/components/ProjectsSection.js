@@ -7,6 +7,7 @@ import {
   Heading,
 } from '@chakra-ui/react';
 
+import DeepLearningRecommendationSystem from './projects/DeepLearningRecommendationSystem';
 import OffenEval from './projects/OffenEval';
 import AnomalyDetection from './projects/AnomalyDetect';
 import XAI from './projects/XAI';
@@ -51,6 +52,7 @@ const ProjectsSection = () => {
         flex="6"
         p={4}
       >
+        <DeepLearningRecommendationSystem />
         <OffenEval />
         <AnomalyDetection />
         <XAI />

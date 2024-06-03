@@ -25,7 +25,7 @@ import {
   } from '@chakra-ui/react';
 import TwitterDetection from '../../images/TwitterDetection.png';
 
-const OffenEval = () => {
+const PorjectBody = () => {
     const isBase = useBreakpointValue({ base: true, md: false });
     const { isOpen, onToggle } = useDisclosure();
 
@@ -266,4 +266,4 @@ final_preds = majority_preds`}</pre>
         )
 }
 
-export default OffenEval;
+export default PorjectBody;

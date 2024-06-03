@@ -12,13 +12,6 @@ import {
     Image,
     Collapse,
     HStack,
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    TableContainer,
     Code,
     Link,
     useDisclosure,
@@ -29,7 +22,7 @@ import TransferLearning from '../../images/TransferLearning.png'
 import SpotTuneFigure from '../../images/SpotTuneFigure.png'
 import SpotTuneAccuracy from '../../images/SpotTuneAccuracy.png'
 
-const OffenEval = () => {
+const PorjectBody = () => {
     const isBase = useBreakpointValue({ base: true, md: false });
     const { isOpen, onToggle } = useDisclosure();
 
@@ -39,7 +32,7 @@ const OffenEval = () => {
           overflow="hidden"
           variant="elevated"
           my={1}
-          id="project-1"
+          id="project-2"
         >
           <Stack>
             <CardHeader pb={0}>
@@ -219,4 +212,4 @@ const OffenEval = () => {
         )
 }
 
-export default OffenEval;
+export default PorjectBody;
